@@ -1,0 +1,35 @@
+{
+  "name": "nft-project",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@pinata/sdk": "^1.1.23",
+    "axios": "^0.24.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "ethereumjs-tx": "^2.1.2",
+    "ethereumjs-wallet": "^1.0.2",
+    "express": "~4.16.1",
+    "express-session": "^1.17.2",
+    "form-data": "^4.0.0",
+    "formidable": "^1.2.2",
+    "fs": "0.0.1-security",
+    "http-errors": "~1.6.3",
+    "ipfs-http-client": "^53.0.1",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.3",
+    "mysql2": "^2.3.2",
+    "nodemailer": "^6.7.0",
+    "pug": "^3.0.2",
+    "request-promise": "^4.2.6",
+    "util": "^0.12.4",
+    "web3": "^0.20.7",
+    "xoauth2": "^1.2.0"
+  }
+}

@@ -1,0 +1,12 @@
+body {
+  background-color: white;
+  font-family: serif;
+  font-size: 28px;
+}
+li{
+  background-color:bg-dark;
+}
+li a{
+  color:black;
+  font-size:28px;
+}

@@ -1,0 +1,19 @@
+body {
+  background-color: white;
+  font-family: serif;
+  font-size: 28px;
+}
+h1{
+  text-align:center;
+  font-weight:bold;
+  font-size:60px;
+}
+.container{
+  position: justify;
+  font-size:20px;
+  padding: 1em 1em 1em;
+  max-width: 450px;
+  margin: 40px auto 0;
+  box-shadow: 0 0 1em #222;
+  border-radius: 2px;
+}

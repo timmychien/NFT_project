@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<title>#{title}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/verify/verify.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  include ../navigator.pug
+  <div class="container">
+    <textarea id="term"form="sign" rows="5" cols="50">茲同意以下條款:</textarea>
+    <br>
+    <div class="wrapper" id="button">
+      <button type="button" id="sendSign">點我驗證</button>
+    </div>
+    <form action="" method="post" id="signform">
+      <label id="signlabel">您的簽章:</label><br>
+      <input type="text" id="signature" name="signature" size="60"readonly="readonly"><br>
+      <br>
+      <span id="sign">已完成簽章!</span><br>
+      <br>
+      <input type="submit" value="確認">
+    </form>
+  </div>
+<script type="text/javascript"></script>
+</body>
+<script src="/javascripts/verify/verify.js"></script>
+</html>

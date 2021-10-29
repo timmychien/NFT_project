@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<title>報名</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/personal/accountconfig.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  include ../navigator.pug
+  <h1>兌換代幣</h1>
+  <div class="container">
+    <form action="" method="post">
+      <label for="address">您的錢包地址:</label><br>
+      <dd id="address" name="address">#{walletaddress}</dd><br>
+      <br>
+      <label for="symbol">目前擁有點數:</label><br>
+      <dd id="points"name="points">1000</dd>
+      <dd id="arrow">&dArr;</dd>
+      <label for="tochange">欲兌換數量:</label><br>
+      <input type="text" id="tochange"name="tochange">
+      <br>
+      <br>
+      <input type="submit" value="確定">
+    </form>
+  </div>
+<script src="/javascripts/personal/accountconfig.js"></script>
+</body>
+</html>

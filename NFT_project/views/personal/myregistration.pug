@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<title>#{title}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/personal/myregistration.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  include ../navigator.pug
+<h1>我的報名</h1>
+    if(data)
+    each x in data
+        if(x.available==1)
+            <div class="container">
+                <img src=#{x.uri} width="400"height="300">
+                <label for="topic">主題:</label><br>
+                <dd id="topic">#{x.topic}</dd>
+                <label for="name">作品名稱:</label><br>
+                <dd id="name">#{x.name}</dd>
+                <label for="symbol">作品代號:</label><br>
+                <dd id="symbol">#{x.symbol}</dd>
+                <label for="votes">票數:</label>
+                <dd id="votes">0</dd>
+            </div>
+<script src="/javascripts/personal/myregistration.js"></script>
+</body>
+</html>

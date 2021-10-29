@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<title>Home</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/index.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  include ./navigator.pug
+  <label>Address:</label>
+    <a id="addr"></a>
+  <br>
+  <br>
+  <label>Balance:</label>
+    <a id="bal"></a>
+  <hr>
+  <form action="" method="post">
+    <label>To Address:</label><br>
+    <input id="to_addr"><br>
+    <label>To Value:</label><br>
+    <input id="to_val"><br>
+    <br>
+    <div>
+      <input type="submit" id="transfer_eth" value="submit"> 
+    </div><br>
+  </form><br>
+  <span id="txspan">Hash:</span>
+  <a id='txhash'></a>
+  
+  <hr>
+  <form action=""method="post">
+    <label>Token Address</label><br>
+    <input id="tokenAddr"><br>
+    <label>Delegate Address</label><br>
+    <input id="delegate"><br>
+    <label>Amount To Transfer:</label><br>
+    <input id="amount"><br>
+    <label>Fee</label><br>
+    <input id="fee"><br>
+    <label>Nonce</label><br>
+    <input id="nonce"><br>
+    <br>
+    <div>
+      <input type="submit" id="createSign" value="submit"> 
+    </div><br>
+</form>
+<span id="sig">Signature:</span><br>
+<p id="signature"></p>
+<input type="hidden" id="sigfortrans">
+<hr>
+<form action="" method="post">
+  <label>Transfer to:</label><br>
+  <input id="to"><br>
+  <br>
+  <div>
+      <input type="submit" id="transferpresigned" value="submit"><br>
+  </div><br>
+</form><br>
+<br>
+<span id="transspan">txhash:</span><br>
+<p id="transhash"></p>
+<script src="/javascripts/abi.js"></script>
+<script src="/javascripts/index.js"></script>
+</body>
+</html>

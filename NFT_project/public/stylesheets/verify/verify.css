@@ -1,0 +1,27 @@
+body {
+  background-color: gray;
+  font-family: serif;
+  font-size: 28px;
+}
+.container{
+  background-color: white;
+  font-size:24px;
+  padding: 4em 10em 4em;
+  max-width: 1120px;
+  margin: 50px auto 0;
+  box-shadow: 0 0 1em #222;
+  border-radius: 2px;
+}
+label{
+  text-align:center;
+}
+textarea{
+  text-align: center;
+  display: block;
+}
+.wrapper{
+  text-align:center;
+}
+form{
+  text-align:center;
+}

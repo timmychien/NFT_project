@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<title>報名</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/signup/signup.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  include ../navigator.pug
+  <h2>#{topic}</h2>
+  <div class="container">
+    <form action="" method="post">
+      <label for="name">作品名稱:</label><br>
+      <input type="text" id="name" name="name"><br>
+      <br>
+      <label for="symbol">作品代號:</label><br>
+      <input type="text" id="symbol" name="symbol"><br>
+      <br>
+      <label for="uri">圖片:</label><br>
+      //<input type="file" id="image" name="image" accept="image/*"><br>
+      <input type="text" id="uri" name="uri">
+      <br>
+      <input type="submit" value="提交">
+    </form>
+  </div>
+<script src="/javascripts/signup/signup.js"></script>
+
+</body>
+</html>
