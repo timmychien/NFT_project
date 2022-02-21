@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { render } from "react-dom";
+//import { render } from "react-dom";
 import { Helmet } from 'react-helmet'
 //import logo from './logo.svg';
 //import {getData}from './promoteData.js';
