@@ -45,7 +45,7 @@ const App=()=>{
       <div className="container">
         {promote_data?.map((item) => (
           <React.Fragment>
-            <img src={item.uri} className="art_works" alt="works" /><br/>
+            <img src={item.uri} className="works" alt="works" /><br/>
             <label>作品名稱:</label>
             <dd>{item.name}</dd>
             <label>創作者:</label>
