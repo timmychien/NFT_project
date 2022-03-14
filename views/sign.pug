@@ -13,25 +13,25 @@
   <br>
   <br>
   <div class="container">
-    <i class="fa fa-user-circle fa-5x" aria-hidden="true"style="color:black"></i>
-    <form action="" method="post">
-      <label for="title">註冊</label><br>
-      <label for ="email">E-mail：</label><br>
-      <input type="text" id="email" name="email"><br/><span class="emailWarn">#{warn}</span>
-      <label for="name">姓名:</label><br>
-      <input type="text" id="name" name="name"><br/>
-      <label for="cellphone">手機:</label><br>
-      <input type="text" id="cellphone" name="cellphone"><br/>
-      <label for="homeaddress">住址:</label><br>
-      <input type="text" id="homeaddress" name="homeaddress"><br/>
-      <label for="userpass">密碼:</label><br>
-      <input type="password" id="userpass" name="userpass"><br/>
-      <label for="passcheck">確認密碼:</label><br>
-      <input type="password" id="passcheck" name="passcheck"><br/><span class="passWarn">#{passWarn}</span>
-      <input type="submit" id="submit" value="註冊">
-    </form>
-    <p>已有帳號？<a id="sign" href="/login">登入</a></p>
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+          <label for='title'>註冊</label>
+        </div>
+
+        <div class="col-md-5">
+          <form action="" method="post">
+            <input class="textfield" type="text" id="name" name="name" placeholder="姓名"><br/>
+            <input class="textfield" type="text" id="email" name="email" placeholder="郵箱"><br/><span class="emailWarn">#{warn}</span>
+            <input class="textfield" type="password" id="userpass" name="userpass" placeholder="密碼"><br/>
+            <input class="textfield" type="password" id="passcheck" name="passcheck" placeholder="確認密碼"><br/><span class="passWarn">#{passWarn}</span>
+            <input class="btnAuthen" type="submit" id="submit" value="註冊">
+          <p>已有帳號？<a id="sign" href="/login">登入</a></p>
+          </form>
+        </div>
+    </div>
   </div>
-<script src="/javascripts/sign.js"></script>
+include ./footbar.pug
+<script src="/javascripts/sign.js">
+</script>
 </body>
 </html>

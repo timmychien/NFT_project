@@ -1,68 +1,78 @@
 body {
-  background-color: gray;
+  background-color: white;
   font-family: serif;
-  font-size: 28px;
+  font-size: 16px;
 }
-.container{
+.container {
   width: 100%;
-  text-align: center;
+  margin-bottom: 90px;
+}
+label[for="title"] {
+  margin-top: 155px;
+  font-family: Noto Sans CJK TC;
+  font-style: normal;
+  font-weight: 350;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0.15em;
+  color: #000000;
 }
 form {
-  text-align:center;
+  text-align: center;
 }
-form input{
-  width: 40%;
+.textfield {
+  height: 100%;
+  width: 100%;
+  border-radius: 0px;
   padding: 6px 10px;
-  margin: 8px 0;
+  margin: 18px 0;
+  font-size: 16px;
   display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-sizing: border-box;
-  background-color:#D0D0D0;
+  border: none;
+  border-bottom: 1px solid #bab8b8;
 }
-form input[id='submit']{
-  width: 20%;
-  border-radius:30px;
-  display: block;
-  margin: 0 auto;
-  color:white;
-  background-color:gray;
+.btnAuthen {
+  /* button */
+  width: 100%;
+  height: 48px;
+  background: #000000;
+  border: none;
+  margin-top: 90px;
+  margin-bottom: 24px;
+  /* text */
+  font-family: Noto Sans SC;
+  font-style: normal;
+  font-weight: 350;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: 4.5px;
+  color: #ffffff;
 }
-form label[for="title"]{
-  color:#666666;
-  font-size:48px;
+.btnAuthen:hover {
+  /* grey-hover */
+  background: #bab8b8 !important;
 }
-form label[for="email"]{
-  color:#666666;
-  font-size:28px;
+::placeholder {
+  text-align: left !important;
+  /* Card-Exhibit-Body */
+  font-family: Noto Sans SC;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+  /* grey-hover */
+  color: #bab8b8;
 }
-form label[for="name"]{
-  color:#666666;
-  font-size:28px;
-}
-form label[for="cellphone"]{
-  color:#666666;
-  font-size:28px;
-}
-form label[for="homeaddress"]{
-  color:#666666;
-  font-size:28px;
-}
-form label[for="passcheck"]{
-  color:#666666;
-  font-size:28px;
-}
-form label[for="userpass"]{
-  color:#666666;
-  font-size:28px;
-}
-i{
-  text-align:center;
-}
-a{
+a {
+  font-weight: 300;
   color: #666666;
 }
-p{
-  text-align:center;
-  color: #666666;
+a:hover {
+  color: black;
+}
+p {
+  font-weight: 300;
+  color: #696969;
 }
