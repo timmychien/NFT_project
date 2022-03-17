@@ -58,3 +58,133 @@ body {
 .container-right dd{
   font-size:24px;
 }
+
+/* caroutel test */
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+
+.carousel-inner .carousel-item-right.active,
+.carousel-inner .carousel-item-next {
+  transform: translateX(33.333%);
+}
+
+.carousel-inner .carousel-item-left.active, 
+.carousel-inner .carousel-item-prev {
+  transform: translateX(-33.333%);
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{ 
+  transform: translateX(0);
+}
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+  filter: invert(100%);
+}
+
+.container {
+  margin-top: 160px;
+  margin-bottom: 160px;
+}
+
+/* h5 {
+  letter-spacing: 4.5px;
+}
+
+h6 {
+  color: #696969;
+} */
+
+.description {
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: -0.5px;
+  color: #696969;
+}
+
+.eventInfo {
+  background: rgb(255, 255, 255);
+  width: 90%;
+  position: relative;
+  bottom: 30px;
+}
+
+.creator {
+  position: absolute;
+  bottom: 80px;
+  left: 30px;
+  font-weight: 350;
+  font-size: 14px;
+  line-height: 25px;
+  color: #ffffff;
+  /* background */
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+}
+
+.title-sm {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 25px;
+  color: #000000;
+}
+
+.title-lg {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 4.5px;
+  color: #000000;
+}
+
+a {
+  font-weight: 300;
+  color: #666666;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+/* img:hover {
+  width: 375px;
+  height: 375px;
+} */
+
+.carousel-control-prev,
+.carousel-control-next {
+  margin-left: -40px;
+  margin-right: -40px;
+}
+
+.author-md {
+  position: absolute;
+  bottom: 240px;
+  left: 30px;
+  font-weight: 350;
+  font-size: 14px;
+  line-height: 25px;
+  color: #ffffff;
+  /* background */
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+}
+.author-lg {
+  position: absolute;
+  bottom: 100px;
+  left: 30px;
+  font-weight: 350;
+  font-size: 14px;
+  line-height: 25px;
+  color: #ffffff;
+  /* background */
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+}

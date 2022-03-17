@@ -2,56 +2,231 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <title>#{title}</title>
 </head>
+head 
+
 <body>
-<title>Home</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/index.css">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
+  // navbar
   include ./navigator.pug
-  <br>
-  <div class="wallet_info">
-    <h1>請使用<a href="https://www.google.com/chrome/">chrome</a>開啟</h1>
-    <h1>點我下載<a href="https://metamask.io/">Metamask</a>錢包</h1>
-    <h2 id="info">目前連接錢包資訊</h2>
-    <hr>
-    <label>地址:</label><br>
-      <a id="addr"></a>
-    if(walletaddress)
-      <input type="hidden" id="walletdb" value=#{walletaddress}>
-    <br>
-    <br>
-    <label>ETH餘額:</label><br>
-      <a id="bal"></a> ETH<br>
-    <label>點數餘額:</label><br>
-      <a id="point_bal"></a>點
-    <hr>
+
+  // body
+
+  // old ver.
+  //- <div class="wallet_info">
+  //-   <h1>請使用<a href="https://www.google.com/chrome/">chrome</a>開啟</h1>
+  //-   <h1>點我下載<a href="https://metamask.io/">Metamask</a>錢包</h1>
+  //-   <h2 id="info">目前連接錢包資訊</h2>
+  //-   <hr>
+  //-   <label>地址:</label><br>
+  //-     <a id="addr"></a>
+  //-   if(walletaddress)
+  //-     <input type="hidden" id="walletdb" value=#{walletaddress}>
+  //-   <br>
+  //-   <br>
+  //-   <label>ETH餘額:</label>
+  //-   <a id="bal"></a> ETH <br>
+  //-   <label>點數餘額:</label>
+  //-   <a id="point_bal"></a> 點
+  //-   <hr>
+  //- </div>
+  
+  //- <div class="promote_info">
+  //-   <h1>熱門作品</h1>
+  //-   if (promote_data)
+  //-     each x in promote_data
+  //-       <div class=info>
+  //-         <br>
+  //-         <br>
+  //-         <div class="container-left">
+  //-           <img src=#{x.uri} width="697"height="408">
+  //-         </div>
+  //-         <div class="container-right">
+  //-           <br>
+  //-           <label for="name">作品名稱:</label><br>
+  //-           <dd>#{x.name}</dd>
+  //-           <br>
+  //-           <label for="author">創作者:</label><br>
+  //-           <dd>#{x.author}</dd>
+  //-           <br>
+  //-           <br>
+  //-           <br>
+  //-         </div>
+  //-       </div>
+  //- </div>
+
+  // promote_data
+  <div class="container" id="promote">
+    <div class="row flex-nowrap overflow-hidden">
+      - for (var i=0; i<4; i++)
+        if (!i)
+          <div class="col">
+            <img src="https://dummyimage.com/400x540/696969/fff" width="400" height="540">
+            <p class="badge badge-pill author-lg">@someone<p>
+            <p for="name" id="NFTname"></p>
+            <p for="author" id="author" class="title-lg">Author</p>
+            <p for="description" id="description">img_description</p>
+          </div>
+        else
+          <div class="col">
+            <div class="image-container">
+              <img src="https://dummyimage.com/285x400/696969/fff" width="285" height="400">
+              <p class="badge badge-pill author-md">@someone<p>
+            </div>
+            <p for="name" id="NFTname"></p>
+            <p for="author" id="author" class="title-lg">Author</p>
+            <p for="description" id="description">img_description</p>
+          </div>
+    </div>
+    <div class="row">
+        <a class="ml-auto more" href="/activity">查看更多  <i class='fas fa-chevron-right'></i></a>   
+    </div>
   </div>
-  <div class="promote_info">
-    <h1>熱門作品</h1>
-    if (promote_data)
-      each x in promote_data
-        <div class=info>
-          <br>
-          <br>
-          <div class="container-left">
-            <img src=#{x.uri} width="697"height="408">
-          </div>
-          <div class="container-right">
-            <br>
-            <label for="name">作品名稱:</label><br>
-            <dd>#{x.name}</dd>
-            <br>
-            <label for="author">創作者:</label><br>
-            <dd>#{x.author}</dd>
-            <br>
-            <br>
-            <br>
-          </div>
+
+  // activity detail carousel
+  <div class="container">
+    <h5 class="text-center mb-5">活動詳情</h5>
+    <div class="row">
+      <a class="ml-auto m-3" href="/activity">查看更多  <i class='fas fa-chevron-right'></i></a>   
+    </div>
+    <div class="row">
+        <div id="activity-detail-carousel" class="carousel slide w-100" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+
+                if (activity_detail)
+                  each val, index in activity_detail
+                    if (!index)
+                      <div class="carousel-item active">
+                        <div class="col-4">
+                          <img src=#{val.uri} width="350" height="350">
+                          <div class="eventInfo">
+                            <p for="eventStatus" id="eventStatus" class="description">#{val.status}</p>
+                            <p for="eventDate" id="eventDate" class="description">#{val.date}</p>
+                            <p for="eventTitle" id="eventTitle" class="title-lg">#{val.title}</p>
+                          </div>
+                        </div>
+                      </div>
+                    else
+                      <div class="carousel-item">
+                        <div class="col-4">
+                          <img src=#{val.uri} width="350" height="350">
+                          <div class="eventInfo">
+                            <p for="eventStatus" id="eventStatus" class="description">#{val.status}</p>
+                            <p for="eventDate" id="eventDate" class="description">#{val.date}</p>
+                            <p for="eventTitle" id="eventTitle" class="title-lg">#{val.title}</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+            </div>
+            
+            // button
+            <a class="carousel-control-prev w-auto" href="#activity-detail-carousel" role="button" data-slide="prev">
+                <span ><i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next w-auto" href="#activity-detail-carousel" role="button" data-slide="next">
+                <span><i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
+    </div>
   </div>
-<script src="/javascripts/pointabi.js"></script>
-<script src="/javascripts/index.js"></script>
+
+  // new_arrival carousel
+  <div class="container">
+    <h5 class="text-center mb-5">最新上架</h5>
+    <div class="row">
+      <a class="ml-auto m-3" href="/activity">查看更多  <i class='fas fa-chevron-right'></i></a>
+      // href 要改到 explore
+    </div>
+    <div class="row">
+      <div id="new-arrival-carousel" class="carousel slide w-100" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+          if (new_arrival)
+            each val, index in new_arrival
+              if (!index)
+                <div class="carousel-item active">
+                  <div class="col-4">
+                    <div>
+                      <img src=#{val.uri} width="350" height="350">
+                      <p class="badge badge-pill creator">#{val.creater}<p>
+                    </div>
+                    <p for="" id="" class="description">#{val.collection}</p>
+                    <div class="row">
+                      <div class="col-auto mr-auto" for="" id="" class="title-sm">#{val.title}</div>
+                      <div class="col-auto" for="" id="price"><p>#{val.price}</p></div>
+                    </div>
+                  </div>
+                </div>
+              else
+                <div class="carousel-item">
+                  <div class="col-4">
+                    <div>
+                      <img src=#{val.uri} width="350" height="350">
+                      <p class="badge badge-pill creator">#{val.creater}<p>
+                    </div>
+                    <p for="" id="" class="description">#{val.collection}</p>
+                    <div class="row">
+                      <div class="col-auto mr-auto" for="" id="" class="title-sm">#{val.title}</div>
+                      <div class="col-auto" for="" id="price"><p>#{val.price}</p></div>
+                    </div>
+                  </div>
+                </div>
+        </div>
+        
+        // button
+        <a class="carousel-control-prev w-auto" href="#new-arrival-carousel" role="button" data-slide="prev">
+          <span ><i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next w-auto fa-lg" href="#new-arrival-carousel" role="button" data-slide="next">
+          <span><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  // carousel script
+  script.
+    $('#new-arrival-carousel').carousel({
+      interval: 10000
+    })
+    $('#activity-detail-carousel').carousel({
+      interval: 10000
+    })
+
+  script.
+    $('.carousel .carousel-item').each(function(){
+      var minPerSlide = 3;
+      var next = $(this).next();
+      if (!next.length) {
+      next = $(this).siblings(':first');
+      }
+      next.children(':first-child').clone().appendTo($(this));
+
+      for (var i=0;i<minPerSlide;i++) {
+          next=next.next();
+          if (!next.length) {
+              next = $(this).siblings(':first');
+          }
+          
+          next.children(':first-child').clone().appendTo($(this));
+      }
+    });
+
+  // footbar
+  include ./footbar.pug
+  
+  <script src="/javascripts/pointabi.js"></script>
+  <script src="/javascripts/index.js"></script>
+
+  
 </body>
 </html>
