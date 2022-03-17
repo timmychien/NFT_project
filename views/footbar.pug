@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
 </head>
 <body>
     <link rel="stylesheet" href="/stylesheets/footbar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <nav for="footer" class="navbar navbar-expand-sm navbar-light flexbox" style="background-color: #f3f2f2; height: 230px" >
-        <div>
-            <a class="navbar-brand" href="/">NFT</a>
-            //- <p class="navbar-brand" href="/">NFT</p>
-            <br>
-            <p class="copyright">Copyright 2022 - All right Reserved</p>
+    
+    <div class="container-fluid footer">
+
+        // nft brand & social media
+        <div class="row align-items-center mb-4">
+            <div class="col-auto mr-auto copyright">
+                <a class="navbar-brand mr-auto" href="/">NFT</a>
+            </div>
+            <div class="col-auto" style="font-size: 22px">
+                <a href=""><i class="fab fa-linkedin-in fa-lg mr-4"></i></a>
+                <a href=""><i class="fab fa-twitter fa-lg mr-4"></i></a>
+                <a href=""><i class="fab fa-facebook-f fa-lg "></i></a>
+            </div>
         </div>
 
-        <div>
-            <!--Linkedin -->
-            <a class="li-ic">
-            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-            </a>
-            <!-- Twitter -->
-            <a class="tw-ic">
-            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-            </a>
-            <!-- Facebook -->
-            <a class="fb-ic">
-            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-            </a>
+        // copyright & language
+        <div class="row">
+            <p class="col-auto mr-auto copyright">Copyright 2022 - All right Reserved</p>
+            <div class="col-auto">
+                <p class="mb-2">選擇語言</p>
+                <p class="mb-0 language">English | 繁體中文</p>
+            </div>
         </div>
-
-
-    </nav>
-<script src="/javascripts/pointabi.js"></script>
-<script src="/javascripts/footbar.js"></script>
+    </div>
+    //- <script src="/javascripts/footbar.js"></script>
 </body>
 </html>

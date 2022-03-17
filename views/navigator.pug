@@ -1,93 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+    <meta  charset="utf-8">   
 </head>
 <body>
+    // link to css
     <link rel="stylesheet" href="/stylesheets/navigator.css">
+
+    // google fonts (Noto Sans TC)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    
+    // jquery
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    
+    // fontawesome
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    
+    // navbar-expand: hom much size to collapse
     <nav class="navbar navbar-expand-sm navbar-light bg-white" >
-        <a class="navbar-brand" href="/">NFT</a>
 
-        <ul class="nav navbar-nav text-center">
+        <div class="container-fluid">
 
-            if(role=='admin')
-                <li class="dropdown">
-                    <a class="dropdown-toggle nav-link" data-toggle="dropdown"role="button" aria-haspopup="true"aria-expanded="false">管理者<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-item" href="/createvote">創建活動</a></li>
-                        <li><a class="nav-item" href="/workconfig">作品管理</a></li>
-                        <li><a class="nav-item" href="/promote">推廣作品</a></li>
-                        <li><a class="nav-item" href="/auditvendor">商家審核</a></li>
-                    </ul>
-                </li>
-            if(role=='vendor')
-                <li class="dropdown">
-                    <a class="dropdown-toggle nav-link" data-toggle="dropdown"role="button" aria-haspopup="true"aria-expanded="false">商家<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-item" href="/addCollection">新增商品集</a></li>
-                        <li><a class="nav-item" href="/workListing">商品上架</a></li>
-                    </ul>
-                </li>
+            // brand
+            <a class="navbar-brand" href="/">NFT</a>
 
-            //<li class="dropdown">
-                <a class="dropdown-toggle nav-link" data-toggle="dropdown"role="button" aria-haspopup="true"aria-expanded="false">活動總覽</a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-item" href="/overview_signup">活動報名</a></li>
-                    <li><a class="nav-item" href="/overview_vote">活動投票</a></li>
-                </ul></li>//
-            <li><a class="nav-item nav-link" href="/activity">活動</a><li>
-            //<li><a class="nav-item nav-link" href="/works">作品</a><li>
-            <li class="dropdown">
-                <a class="dropdown-toggle nav-item nav-link"data-toggle="dropdown" role="button" aria-haspopup="true"aria-expanded="false">作品<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-item" href="/works">作品總覽</a><li>
-                    <li><a class="nav-item" href="/workvoted">已投票作品</a><li>
-                    <li><a class="nav-item" href="/workbought">已購買作品</a><li>
-                </ul>
-            </li>
-        </ul>
+            // left side
+            <ul class="navbar-nav mr-auto">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-
-
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-
-            <ul class="nav navbar-nav ml-auto text-bottom">
-                if(!email)
-                    <li><a class="nav-item nav-link" href="/login">登入</a><li>
-                    //- <li><a class="nav-item nav-link" href="#" id="language">ENG | 中</a><li>
-                else
-                    <div class="pointbalance">
-                        <input type="text" id="pointbal" name="pointbal" readonly/>
-                        <button id="exchangetoken"><a href="/exchangetoken">+</a></button>
-                    </div>
-                    <i class="fa fa-user-circle fa-2x" aria-hidden="false"style="color:white"></i>
+                // admin only
+                if(role=='admin')
                     <li class="dropdown">
-                        <a class="dropdown-toggle nav-link"data-toggle="dropdown" role="button" aria-haspopup="true"aria-expanded="false"></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-item" href="/myinfo">個人資料</a></li>
-                                <li><a class="nav-item" href="/workupload">作品上傳</a></li>
-                                <li><a class="nav-item" href="/mywork">我的作品</a></li>
-                                <li><a class="nav-item" href="/myregistration">我的報名</a></li>
-                                <li><a class="nav-item" href="/mycollection">我的收藏</a></li>
-                                <li><a class="nav-item" href="/exchangetoken">兌換代幣</a></li>
-                                <li><a class="nav-item" href="/applyforvendor">升級帳號</a></li>
-                            </ul>
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown"role="button" aria-haspopup="true"aria-expanded="false">管理者<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="/createvote">創建活動</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/workconfig">作品管理</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/promote">推廣作品</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/auditvendor">商家審核</a></li>
+                        </ul>
                     </li>
-                    <li><a class="nav-item nav-link" href="/logout">登出</a><li>
-                    <li><a class="nav-item nav-link" href="#" id="language">ENG | 中</a><li>
+
+                // vendor only
+                if(role=='vendor')
+                    <li class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown"role="button" aria-haspopup="true"aria-expanded="false">商家<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="/addCollection">新增商品集</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/workListing">商品上架</a></li>
+                        </ul>
+                    </li>
+
+                //- <li class="dropdown">
+                //-     <a class="dropdown-toggle nav-link" data-toggle="dropdown"role="button" aria-haspopup="true"aria-expanded="false">活動總覽</a>
+                //-     <ul class="dropdown-menu">
+                //-         <li><a class="nav-item" href="/overview_signup">活動報名</a></li>
+                //-         <li><a class="nav-item" href="/overview_vote">活動投票</a></li>
+                //-     </ul>
+                //- </li>
+
+                // general
+                <li class="nav-item"><a class="nav-link" href="/activity">活動</a><li>
+                <li class="nav-item"><a class="nav-link" href="/overview_vote">投票</a><li>
+                <li class="nav-item"><a class="nav-link" href="/works">探索</a><li>
+
+                //- <li class="dropdown">
+                //-     <a class="dropdown-toggle nav-item nav-link" data-toggle="dropdown" role="button" aria-haspopup="true"aria-expanded="false">作品<span class="caret"></span></a>
+                //-     <ul class="dropdown-menu">
+                //-         <li><a class="nav-item" href="/works">作品總覽</a><li>
+                //-         <li><a class="nav-item" href="/workvoted">已投票作品</a><li>
+                //-         <li><a class="nav-item" href="/workbought">已購買作品</a><li>
+                //-     </ul>
+                //- </li>
+
+            </ul>
+
+            // right side
+            <ul class="navbar-nav">
+                if(!email)
+                    <li class="nav-item"><a class="nav-link" href="/login">登入</a><li>
+                else
+                    <li class="nav-item mr-4">
+                        <div class="pointContainer">
+                            // get point by abi
+                            <div>50</div>
+                            <a href="exchangetoken">
+                                <i class="fas fa-plus-circle fa-lg"></i>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user fa-lg"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-lg-right">
+                            <li><a class="dropdown-item" href="/myinfo">個人資料</a></li>
+                            <li><a class="dropdown-item" href="/workupload">作品上傳</a></li>
+                            <li><a class="dropdown-item" href="/mywork">我的作品</a></li>
+                            <li><a class="dropdown-item" href="/myregistration">我的報名</a></li>
+                            <li><a class="dropdown-item" href="/mycollection">我的收藏</a></li>
+                            <li><a class="dropdown-item" href="/exchangetoken">兌換代幣</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/applyforvendor">升級成為會員</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">登出</a><li>
+                        </ul>
+                    </li>
             </ul>
         </div>
     </nav>
-<script src="/javascripts/pointabi.js"></script>
-<script src="/javascripts/navigator.js"></script>
+
+    // link to js
+    <script src="/javascripts/pointabi.js"></script>
+    <script src="/javascripts/navigator.js"></script>
 </body>
 </html>
