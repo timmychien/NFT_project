@@ -9,22 +9,77 @@
   <link rel="stylesheet" href="/stylesheets/personal/exchangetoken.css">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+  // navbar
   include ../navigator.pug
-  <br>
-  <br>
-  <br>
+
+  //- <br>
+  //- <br>
+  //- <div class="container">
+  //-   <form action="" method="post">
+  //-     <label for='title'>個人錢包</label><br>
+  //-     <label for="address">錢包地址:</label>
+  //-     <input type="text" id="address" name="address"value=#{walletaddress} readonly><br>
+  //-     <label for="symbol">目前擁有點數:</label>
+  //-     <input type="text" id="points"name="points" value=1000 readonly>
+  //-     <label for="tochange">欲兌換數量:</label>
+  //-     <input type="text" id="tochange"name="tochange">
+  //-     <input type="submit" id="confirm" value="確定">
+  //-   </form>
+  //- </div>
+
+  // body
   <div class="container">
-    <form action="" method="post">
-      <label for='title'>個人錢包</label><br>
-      <label for="address">錢包地址:</label>
-      <input type="text" id="address" name="address"value=#{walletaddress} readonly><br>
-      <label for="symbol">目前擁有點數:</label>
-      <input type="text" id="points"name="points" value=1000 readonly>
-      <label for="tochange">欲兌換數量:</label>
-      <input type="text" id="tochange"name="tochange">
-      <input type="submit" id="confirm" value="確定">
-    </form>
+    <div class="row justify-content-center">
+      <div class="col-md-3">
+        <label for='title'>個人錢包</label>
+      </div>
+
+      <div class="col-md-6">
+        <form action="" method="post">
+
+          // address
+          <input class="textfield" type="text" id="address" name="address" placeholder="錢包地址" value="#{walletaddress}" disabled><br/>
+
+
+          <div class="row">
+            <div class="col-4">
+              <input class="textfield" type="text" id="points" name="points" placeholder="點數餘額" value="1000" disabled>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4">
+              <input class="textfield" type="text" id="eth" name="eth" placeholder="ETH餘額" value="" disabled>
+            </div>
+          </div>
+
+          // exchange point
+          <div class="row mt-5 align-items-center">
+            <div class="col-4">
+              <input class="textfield" type="text" id="tochange" name="tochange" placeholder="欲兌換點數" value="">
+            </div>
+            <div class="col-1 px-0">
+              <a href="">
+                  <i class="fas fa-plus-circle fa-lg"></i>
+              </a>
+            </div>
+            <div class="col-4">
+              <input class="textfield" type="text" id="todebit" name="todebit" placeholder="預計扣除" value="">
+            </div>
+            <div class="col-3">
+              <input class="btnAuthen" type="submit" id="todebit" value="確認" >
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
   </div>
-<script src="/javascripts/personal/exchangetoken.js"></script>
+
+  // footer
+  include ../footbar.pug
+
+  <script src="/javascripts/personal/exchangetoken.js"></script>
 </body>
 </html>

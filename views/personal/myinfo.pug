@@ -10,22 +10,48 @@
   <link rel="stylesheet" href="/stylesheets/personal/myinfo.css">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
+  // navbar
   include ../navigator.pug
+  
+  //- <div class="container">
+  //-   <h2 id=title>我的資料</h2>
+  //-   <hr>
+  //-   <label for="name">姓名:</label><br>
+  //-   <dd id="name" name="name">#{name}</dd><br>
+  //-   <label for="email">信箱:</label><br>
+  //-   <dd id="email" name="email">#{email}</dd><br>
+  //-   <label for="homeaddress">地址:</label><br>
+  //-   <dd id="homeaddress"name="homeaddress">#{address}</dd><br>
+  //-   <label for="cellphone">手機:</label><br>
+  //-   <dd id="cellphone"name="cellphone">#{cellphone}</dd><br>
+  //-   <label for="walletddress">錢包地址:</label><br>
+  //-   <dd id="walletaddress" name="walletaddress">#{walletaddress}</dd><br>
+  //-   <label for="">
+  //- </div>
+
+  // body
   <div class="container">
-    <h2 id=title>我的資料</h2>
-    <hr>
-    <label for="name">姓名:</label><br>
-    <dd id="name" name="name">#{name}</dd><br>
-    <label for="email">信箱:</label><br>
-    <dd id="email" name="email">#{email}</dd><br>
-    <label for="homeaddress">地址:</label><br>
-    <dd id="homeaddress"name="homeaddress">#{address}</dd><br>
-    <label for="cellphone">手機:</label><br>
-    <dd id="cellphone"name="cellphone">#{cellphone}</dd><br>
-    <label for="walletddress">錢包地址:</label><br>
-    <dd id="walletaddress" name="walletaddress">#{walletaddress}</dd><br>
-    <label for="">
-</div>
-<script src="/javascripts/personal/myinfo.js"></script>
+    <div class="row justify-content-center">
+      <div class="col-md-3">
+        <label for='title'>帳號設定</label>
+      </div>
+
+      <div class="col-md-5">
+        <form action="" method="post">
+          <input class="textfield" type="text" id="name" name="name" placeholder="姓名" value="#{name}" disabled><br/>
+          <input class="textfield" type="text" id="email" name="email" placeholder="郵箱" value="#{email}" disabled><br/>
+          <input class="textfield" type="text" id="address" name="address" placeholder="地址" value="#{address}" disabled><br/>
+          <input class="textfield" type="text" id="phone" name="phone" placeholder="手機" value="#{cellphone}" disabled><br/>
+          <input class="btnAuthen" type="submit" id="submit" value="編輯">
+        </form>
+      </div>
+    </div>
+  </div>
+
+  // footer
+  include ../footbar.pug
+
+  <script src="/javascripts/personal/myinfo.js"></script>
 </body>
 </html>
