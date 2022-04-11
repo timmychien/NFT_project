@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 </head>
 <body>
-<title>商品上傳</title>
+<title>個人作品</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/personal/workupload.css">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -18,9 +18,9 @@
   // body-title
   <div class="container-title">
     <div class="row">
-      <h3 class="col-3">商品上架</h3>
-      <h3 class="col-auto mr-auto">商品集</h3>
-      <div class="col-auto">
+      <h3 class="col-3">個人作品</h3>
+      // dropdown
+      <div class="col-auto ml-auto">
         <select class="selectpicker">
           <option value="1" selected>最新</option>
           <option value="2">價格：由高至低</option>
@@ -39,10 +39,8 @@
           // filter
           <div class="card">
             <div class="card-header row" id="heading" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="true" aria-controls="collapse">
-              
               <div class="col-auto mr-auto">篩選</div>
               <div class="col-auto pr-0">〉</div>
-                
             </div>
 
             <div id="collapseFilter" class="collapse show" aria-labelledby="heading" data-parent="#accordionFilter">
@@ -50,55 +48,26 @@
                 // search box
                 <div class="input-group align-items-center mb-3">
                   <i class="fas fa-search"></i>
-                  <input type="search" id="form1" class="form-control" placeholder="搜尋作品或商品集名稱"/>
+                  <input type="search" id="form1" class="form-control" placeholder="搜尋作品名稱"/>
                 </div>
-                // radio
-                <div class="container-radio overflow-auto">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">Monster(13)</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">CryptoPenguins(20)</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">PandaMultiverse(15)</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">LuckyCat(15)</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">Monster(13)</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">CryptoPenguins(20)</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">PandaMultiverse(15)</label>
-                  </div>
+                // filter tag
+                <div>
+                  <button type="button" class="btn btn-outline-secondary">已報名活動</button>
+                  <button type="button" class="btn btn-outline-secondary">活動進行中</button>
+                  <button type="button" class="btn btn-outline-secondary">未報名</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      // card
       <div class="col">
         <div class="row">
           <button id="upload-btn" type="button" class="col-4 align-self-center" data-toggle="modal" data-target="#exampleModalCenter">+</button>
           <div class="modal fade bd-example-modal-xl" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
               <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
                 <div class="modal-body">
                   <form class="row" action="" method="post">
                     <div id="container-upload" class="col-6 text-center">
@@ -111,24 +80,14 @@
                     <input type="hidden" id="ipfsuri" name="ipfsuri" readonly>
                     <div class="col-1"></div>
                     <div class="col-5">
-                      <label for="collection">商品集*</label><br>
-                      // using dropdown?
-                      <select class="form-select" aria-label="Default select example">
-                        <option selected>選擇商品集</option>
-                        <option value="1">Collection 1</option>
-                        <option value="2">Collection 2</option>
-                        <option value="3">Collection 3</option>
-                        <option value="4"><a href="/addCollection">新增商品集</a></option>
-                      </select><br>
-                      <br>
                       <input class="textfield" type="text" id="name" name="name" placeholder="作品名稱*"><br>
                       <input class="textfield" type="text" id="symbol" name="symbol" placeholder="作品代號*"><br>
                       <input class="textfield" type="text" id="description" name="description" placeholder="作品描述"><br>
-                      <input class="textfield" type="text" id="price" name="price" placeholder="價格*"><br>
                       <span>#{warn}</span>
-                      <br>
-                      <input class="btn-submit" type="submit" id="upload" value="上傳NFT">
-                      <br>
+                      <div class="row" id="upload-btn-group">
+                        <div class="col"><input class="btn-submit" type="submit" id="upload" value="上傳作品"></div>
+                        <div class="col"><input class="btn-cancel" type="submit" data-dismiss="modal" value="取消"></div>
+                      </div>
                     </div>
                   </form>
                 </div>
@@ -150,29 +109,29 @@
   </div>
 
 
-  <div class="overview">
-    <br>
-    if (works)
-      each work in works
-        <br>
-        <br>
-        <div class=info>
-          <div class="container">
-            <form action="" method="post">
-                <img src=#{work[0]} width="400"height="240">
-                <label for="address">作品地址:</label>
-                <dd>#{work[1]}</dd>
-                <label for="id">作品ID:</label>
-                <dd>#{work[2]}</dd>
-                <label for="price">價格</label>
-                <dd>$2</dd>
-                <input type="hidden" name="contractaddress" id="contractaddress"value=#{work[1]} readonly>
-                <input type="hidden" name="tokenid" id="tokenid" value=#{work[2]} readonly>
-                <input type="button" id="buy" value="購買">
-            </form>
-          </div>
-        </div>
-  </div>
+  //- <div class="overview">
+  //-   <br>
+  //-   if (works)
+  //-     each work in works
+  //-       <br>
+  //-       <br>
+  //-       <div class=info>
+  //-         <div class="container">
+  //-           <form action="" method="post">
+  //-               <img src=#{work[0]} width="400"height="240">
+  //-               <label for="address">作品地址:</label>
+  //-               <dd>#{work[1]}</dd>
+  //-               <label for="id">作品ID:</label>
+  //-               <dd>#{work[2]}</dd>
+  //-               <label for="price">價格</label>
+  //-               <dd>$2</dd>
+  //-               <input type="hidden" name="contractaddress" id="contractaddress"value=#{work[1]} readonly>
+  //-               <input type="hidden" name="tokenid" id="tokenid" value=#{work[2]} readonly>
+  //-               <input type="button" id="buy" value="購買">
+  //-           </form>
+  //-         </div>
+  //-       </div>
+  //- </div>
 
   //- // personal coolection
   //- <div class="container-title">
