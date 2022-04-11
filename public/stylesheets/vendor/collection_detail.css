@@ -1,0 +1,9 @@
+.creator {
+    font-weight: 350;
+    font-size: 14px;
+    line-height: 25px;
+    color: #ffffff;
+    /* background */
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 30px;
+  }

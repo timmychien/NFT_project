@@ -36,11 +36,3 @@ $("#imageupload").on("change", function () {
   };
   reader.readAsArrayBuffer(this.files[0]);
 });
-
-$(".btn-outline-secondary").click(function () {
-  if ($(this).hasClass("active")) {
-    $(this).removeClass("active");
-  } else {
-    $(this).addClass("active");
-  }
-});

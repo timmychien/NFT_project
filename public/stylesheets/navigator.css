@@ -69,3 +69,50 @@ body {
   top: 0px;
   right: 3px;
 }
+
+#logoutModal-body {
+  padding: 73px;
+}
+
+#logoutModal-text {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 35px;
+  letter-spacing: 1px;
+}
+
+#logoutModal-content {
+  height: 232px;
+  width: 494px;
+}
+
+.btn-check {
+  background-color: black;
+  color: white;
+  height: 48px;
+  width: 165px;
+  border-radius: 0px;
+  text-align: center;
+  line-height: 33px;
+}
+
+.btn-check:hover {
+  background-color: black;
+  color: white;
+  height: 48px;
+  width: 165px;
+  border-radius: 0px;
+  text-align: center;
+  line-height: 33px;
+}
+
+#logout-cancel {
+  background-color: white;
+  color: black;
+  height: 48px;
+  width: 165px;
+  border-radius: 0px;
+  text-align: center;
+  border: 1px solid #000000;
+}
