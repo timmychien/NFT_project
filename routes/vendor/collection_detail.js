@@ -5,8 +5,9 @@ var router = express.Router();
 router.get("/", function (req, res) {
   // workaround in local
   res.render("vendor/collection_detail", {
-    title: "collection_detail",
+    title: "商品集詳情",
     email: req.session.email,
+    goods: goods,
   });
 });
 
@@ -39,3 +40,25 @@ router.post("/", function (req, res) {
 });
 
 module.exports = router;
+var goods = [
+  {
+    uri: "https://dummyimage.com/350x350/8b9091/fff",
+    collection: "DouJiang",
+    title: "yummy",
+  },
+  {
+    uri: "https://dummyimage.com/350x350/8b9091/fff",
+    collection: "Y-find",
+    title: "Manouria emys",
+  },
+  {
+    uri: "https://dummyimage.com/350x350/8b9091/fff",
+    collection: "Alpha",
+    title: "Lasiodora parahybana",
+  },
+  {
+    uri: "https://dummyimage.com/350x350/8b9091/fff",
+    collection: "Biodex",
+    title: "Crocodylus niloticus",
+  },
+];

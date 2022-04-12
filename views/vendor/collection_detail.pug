@@ -4,16 +4,17 @@
   <meta charset="utf-8">
 </head>
 <body>
-<title>商品集詳情</title>
+<title>#{title}</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/vendor/collection_detail.css">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   
   // navigator
   include ../navigator.pug
 
-
+  // collection detail
   <h5 class="text-center my-5">商品集詳情</h5>
   <div class="container">
     <div class="row">
@@ -21,12 +22,73 @@
             <img src="https://dummyimage.com/1000x1000/8b9091/fff" class="img-fluid">
         </div>
         <div class="col">
-            <form action="" method="post">
-                <div>Monster</div>
-                <div>Detail Detail Detail Detail Detail Detail</div>
-            </form>
+            // todo: edit button
+            <div class="row dropdown">
+              <button class="btn dropdown-toggle ml-auto" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-ellipsis-h"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="" disabled>編輯</a>
+                <a class="dropdown-item" href="">刪除</a>
+              </div>
+            </div>
+            // collection description
+            <div class="row">
+              <div class="title">Monster</div>
+              <div class="detail">Detail Detail Detail Detail Detail Detail</div>
+            </div>
         </div>
     </div>
+
+    // divider
+    <hr>
+    
+    // goods
+    <h5 class="text-center my-5">商品</h5>
+    <div class="row">
+      <div class="col-4 text-center">
+        <button id="upload-btn" type="button" data-toggle="modal" data-target="#exampleModalCenter">+</button>
+        <div class="modal fade bd-example-modal-xl" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <form class="row" action="" method="post">
+                  <div id="container-upload" class="col-6 text-center">
+                    <img src="" id="preview" width="300"height="300">
+                    <input type="file" id="imageupload" name="image" style="display:none;" onchange=previewFile()><br>
+                    <i class="bi bi-upload" style="font-size: 5rem;"></i>
+                    // todo: 有preview的時候上傳圖片不能位移
+                    <label for="imageupload">上傳圖片</label>
+                    <p>格式限制：jpg、gif、png</p>
+                  </div>
+                  <input type="hidden" id="ipfsuri" name="ipfsuri" readonly>
+                  <div class="col-1"></div>
+                  <div class="col-5">
+                    <input class="textfield" type="text" id="name" name="name" placeholder="作品名稱*"><br>
+                    <span>#{warn}</span>
+                    <input class="textfield" type="text" id="name" for="price" name="name" placeholder="價格"><br>
+                    <div class="row" id="upload-btn-group">
+                      <div class="col"><input class="btn-submit" type="submit" id="upload" value="上傳作品"></div>
+                      <div class="col"><input class="btn-cancel" type="submit" data-dismiss="modal" value="取消"></div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      if (goods)
+        each val in goods
+          <div class="col-4 explore-card">
+            <div>
+              <a href="#"><img src=#{val.uri} width="285" height="285"></a>
+            </div>
+            <p for="" id="" class="title-sm">#{val.title}</p>
+          </div>
+    </div>
+
   </div>
 
 
