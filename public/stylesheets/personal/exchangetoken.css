@@ -1,76 +1,3 @@
-/* body {
-  background-color: gray;
-  font-family: serif;
-  font-size: 28px;
-}
-.container{
-  width: 100%;
-  text-align: center;
-}
-form{
-  text-align:center;
-}
-form input[id="address"]{
-  width: 40%;
-  padding: 6px 10px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-sizing: border-box;
-  background-color:#D0D0D0;
-}
-form input[id="points"]{
-  width: 20%;
-  padding: 6px 10px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-sizing: border-box;
-  background-color:#D0D0D0;
-}
-form input[id="tochange"]{
-  width: 20%;
-  padding: 6px 10px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-sizing: border-box;
-  background-color:#D0D0D0;
-}
-form input[id='confirm']{
-  width: 20%;
-  border-radius:30px;
-  display: block;
-  margin: 0 auto;
-  color:white;
-  background-color:gray;
-}
-form label[for="title"]{
-  color:#666666;
-  font-size:48px;
-}
-form label[for="email"]{
-  color:#666666;
-  font-size:28px;
-}
-form label[for="userpass"]{
-  color:#666666;
-  font-size:28px;
-}
-i{
-  text-align:center;
-}
-a{
-  color: #666666;
-}
-p{
-  text-align:center;
-  color: #666666;
-} */
-
 body {
   background-color: white;
   font-family: serif;
@@ -82,7 +9,7 @@ body {
   margin-bottom: 200px;
 }
 label[for="title"] {
-  margin-top: 120px;
+  margin-top: 4.6rem;
   font-family: Noto Sans CJK TC;
   font-style: normal;
   font-weight: 350;
@@ -110,8 +37,6 @@ form {
   background: #000000;
   border: none;
   /* text */
-  font-family: Noto Sans SC;
-  font-style: normal;
   font-weight: 350;
   font-size: 20px;
   line-height: 25px;
@@ -120,13 +45,11 @@ form {
   color: #ffffff;
 }
 .btnAuthen:hover {
-  /* grey-hover */
   background: #bab8b8 !important;
 }
 ::placeholder {
   text-align: left !important;
   /* Card-Exhibit-Body */
-  font-family: Noto Sans SC;
   font-style: normal;
   font-weight: 300;
   font-size: 16px;

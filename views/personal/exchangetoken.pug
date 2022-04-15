@@ -14,20 +14,6 @@
   // navbar
   include ../navigator.pug
 
-  //- <br>
-  //- <br>
-  //- <div class="container">
-  //-   <form action="" method="post">
-  //-     <label for='title'>個人錢包</label><br>
-  //-     <label for="address">錢包地址:</label>
-  //-     <input type="text" id="address" name="address"value=#{walletaddress} readonly><br>
-  //-     <label for="symbol">目前擁有點數:</label>
-  //-     <input type="text" id="points"name="points" value=1000 readonly>
-  //-     <label for="tochange">欲兌換數量:</label>
-  //-     <input type="text" id="tochange"name="tochange">
-  //-     <input type="submit" id="confirm" value="確定">
-  //-   </form>
-  //- </div>
   // body
   <div class="container">
     <div class="row justify-content-center">
@@ -52,7 +38,7 @@
           // exchange point
           <div class="row mt-5 align-items-center">
             <div class="col-4">
-              <input class="textfield" type="text" id="tochange" name="tochange" placeholder="欲兌換平台點數" value="">
+              <input class="textfield" type="text" id="tochange" name="tochange" placeholder="欲兌換平台點數" value="" oninput="value=value.replace(/[^\d]/g,'')">
             </div>
             <div class="col-1 px-0">
               <i class="fa fa-exchange-alt fa-lg"></i>
@@ -63,11 +49,7 @@
             <div class="col-3">
               <input class="btnAuthen" type="submit" id="confirm" value="確認" >
             </div>
-
           </div>
-
-          </div>
-
         </form>
       </div>
     </div>

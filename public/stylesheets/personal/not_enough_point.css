@@ -1,17 +1,17 @@
 body {
-  background: #384047;
-  font-family: serif;
-  font-size: 16px;
+  background-color: #bfbfbf;
+  font-family: Noto Sans SC;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 29px;
+  letter-spacing: 0.15em;
 }
-
-form {
-  background: #fff;
-  padding: 2em 2em 2em;
-  max-width: 400px;
-  margin: 50px auto 0;
-  box-shadow: 0 0 1em #222;
-  border-radius: 2px;
+.container {
+  width: 100%;
+  margin-top: 200px;
+  margin-bottom: 200px;
 }
-    h1{
-        text-align:center;
-    }
+.col-6 {
+  background-color: white;
+  height: 18.75rem;
+}

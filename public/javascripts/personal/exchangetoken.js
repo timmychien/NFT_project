@@ -1,5 +1,8 @@
-function exchange(){
-    var tochange=$('#tochange').val();
-    var needchange=int(tochange*100);
-    $('#needchange').text(needchange);
-}
+$("#tochange").on("input", function () {
+  var tochange = $("#tochange").val();
+  var needchange = tochange * 100;
+  if (!$(this).val()) {
+    needchange = "";
+  }
+  $("#todebit").val(needchange);
+});
