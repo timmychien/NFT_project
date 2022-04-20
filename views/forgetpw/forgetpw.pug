@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>#{title}</title>
+<title>忘記密碼</title>
 </head>
 <body>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -17,17 +17,15 @@
   <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-3">
-          <label for='title'>忘記密碼</label>
+          <label for='title'>填入註冊信箱</label>
         </div>
         <div class="col-md-5">
           <form action="" method="post">
-            <h2>請輸入您的信箱:</h2>
             <input class="textfield" type="text" id="email" name="email" placeholder="信箱"><br/>
-            <span class="warn">#{warn1}</span>
+            <span class="warn">#{warn}</span>
             <br>
-            <input class="btnAuthen" type="submit" id="login" value="確定">
+            <input class="btnAuthen" type="submit" id="login" value="驗證">
             <p>還沒有帳號？<a id="sign" href="/sign">註冊</a></p>
-            <a href="/forgetpw">忘記密碼？</a>
           </form>
         </div>
     </div>
