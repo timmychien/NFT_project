@@ -90,8 +90,8 @@
       </div>
       <div class="col">
         <div class="row">
-          <button id="upload-btn" type="button" class="col-4 align-self-center" data-toggle="modal" data-target="#exampleModalCenter">+</button>
-          <div class="modal fade bd-example-modal-xl" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <button id="upload-btn" type="button" class="col-4 align-self-center" data-toggle="modal" data-target="#createModalCenter">+</button>
+          <div class="modal fade bd-example-modal-xl" id="createModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -111,7 +111,6 @@
                     <input type="hidden" id="ipfsuri" name="ipfsuri" readonly>
                     <div class="col-1"></div>
                     <div class="col-5">
-                      <label for="collection">商品集*</label><br>
                       // using dropdown?
                       //<select class="form-select" aria-label="Default select example">
                         <option selected>選擇商品集</option>
@@ -124,7 +123,6 @@
                       <input class="textfield" type="text" id="symbol" name="symbol" placeholder="商品集代號*"><br>
                       //- <input class="textfield" type="text" id="symbol" name="symbol" placeholder="作品代號*"><br>
                       <input class="textfield" type="text" id="description" name="description" placeholder="作品描述"><br>
-                      //<input class="textfield" type="text" id="price" name="price" placeholder="價格*"><br>
                       <span>#{warn}</span>
                       <br>
                       <input class="btn-submit" type="submit" id="upload" value="上傳NFT">
@@ -160,19 +158,52 @@
             each val in collections
               <div class="col-4 explore-card">
                 <div>
-                  <a href="/collection_detail/#{val.name}/#{val.contract}"><img src=#{val.uri} width="285" height="285"></a>
+                  <img src=#{val.uri} width="285" height="285" data-toggle="modal" data-target="#uploadModalCenter">
                   <p class="badge badge-pill creator">#{val.vendorname}<p>
                 </div>
                 <p for="" id="" class="description">#{val.description}</p>
                 <div class="row">
-                  <div class="col-auto mr-auto" for="" id="" class="title-sm">#{val.name}</div>
-                  <div class="col-auto" for="" id="price"><p>$2</p></div>
+                  <a href="/collection_detail/#{val.name}/#{val.contract}"><div class="col-auto mr-auto" for="" id="" class="title-sm">#{val.name}</div></a>
                 </div>
               </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="modal fade bd-example-modal-xl" id="uploadModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body-work">
+          <form class="row" action="" method="post">
+            <div id="container-upload" class="col-6 text-center">
+              //<img src="" id="preview" width="300"height="300">
+              <input type="file" id="imageupload" name="image" style="display:none;" onchange=previewFile()><br>
+              <i class="bi bi-upload" style="font-size: 5rem;"></i>
+              // todo: 有preview的時候上傳圖片不能位移
+              <label for="imageupload">上傳圖片</label>
+              <p>格式限制：jpg、gif、png</p>
+            </div>
+            //<input type="hidden" id="ipfsuri" name="ipfsuri" readonly>
+            <div class="col-1"></div>
+            <div class="col-5">
+
+              <br>
+              <input class="textfiled" type="text" id="ipfsuri" name="ipfsuri">
+              <input class="textfield" type="text" id="work_name" name="name" placeholder="作品名稱*"><br>
+              <span>#{warn}</span>
+              <input class="textfield" type="text" id="work_description" for="price" name="name" placeholder="描述"><br>
+              <input class="textfield" type="text" id="work_price" for="price" name="name" placeholder="價格*"><br>
+              <div class="row" id="upload-btn-group">
+                <div class="col"><input class="btn-submit" type="submit" id="upload" value="上傳作品"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   //- <form action="" method="post">
   //-   <div class="container-left">

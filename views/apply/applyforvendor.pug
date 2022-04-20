@@ -9,21 +9,40 @@
   <link rel="stylesheet" href="/stylesheets/apply/applyforvendor.css">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  //include ../navigator.pug
-  <br>
-  <br>
-  <br>
-  <br>
-  <form action=""method="post">
-    <h1>確定申請帳號升級?</h1>
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="apply" name="apply">
-    <label for="apply">確認</label>
-    <br>
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="submit" name="submit" value="送出">&nbsp;&nbsp;&nbsp;<a href="/">稍後再說</a>
-    <br>
-    <br>
-    <br>
-  </form>
+  
+  // navbar
+  include ../navigator.pug
+  
+  // body
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+          <label for='title'>升級會員須知</label>
+        </div>
+        <div class="col-md-5">
+          <form action="" method="post">
+            <div id="policy">會員可以上架/販售，創辦活動等</div>
+            <input type="checkbox" id="apply" name="apply">
+            <label for="apply">我已閱讀並同意條款</label>
+            //- <span class="warn">#{warn1}</span>
+            <input class="btnAuthen" type="submit" id="submit" name="submit" value="送出申請">
+          </form>
+        </div>
+    </div>
+  </div>
+  // footbar
+  include ../footbar.pug
+
+  //- <form action=""method="post">
+  //-   <h1>確定申請帳號升級?</h1>
+  //-   <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="apply" name="apply">
+  //-   <label for="apply">確認</label>
+  //-   <br>
+  //-   <br><input type="submit" id="submit" name="submit" value="送出"><a href="/">稍後再說</a>
+  //-   <br>
+  //-   <br>
+  //-   <br>
+  //- </form>
 <script src="/javascripts/pointabi.js"></script>
 <script src="/javascripts/apply/applyforvendor.js"></script>
 </body>
