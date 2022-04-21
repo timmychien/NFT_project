@@ -29,52 +29,58 @@ const customCommon = Common.forCustomChain(
   "petersburg"
 );
 router.get("/", function (req, res) {
-  var bal = pointcontract.balanceOf(req.session.walletaddress).toNumber();
-  var pool = req.connection;
-  var works = new Array();
-  var user = req.session.walletaddress;
-  pool.getConnection(function (err, connection) {
-    connection.query(
-      "SELECT contract FROM collectionlist ",
-      function (err, rows) {
-        if (err) {
-          console.log(err);
-        }
-        for (var i = 0; i < rows.length; i++) {
-          var contract = web3.eth.contract(collectionabi).at(rows[i].contract);
-          var total = contract.totalSupply.call().toNumber();
-          //var author=contract.author.call();
-          for (var id = 1; id <= total; id++) {
-            var owner = contract.ownerOf.call(id);
-            var isonsell = vendorcontract.isOnSell;
-            isonsell = isonsell.call(rows[i].contract, id);
-            isonsell = isonsell.toString();
-            if (owner != user && isonsell == "true") {
-              var uri = contract.tokenURI(id);
-              var metadata = contract.Metadata.call(id);
-              var name = metadata[1];
-              var description = metadata[2];
-              var price = metadata[3];
-              works.push([
-                uri,
-                name,
-                rows[i].vendorname,
-                rows[i].contract,
-                description,
-                price,
-              ]);
+  if (!req.session.email) {
+    res.redirect("/login");
+  } else {
+    var bal = pointcontract.balanceOf(req.session.walletaddress).toNumber();
+    var pool = req.connection;
+    var works = new Array();
+    var user = req.session.walletaddress;
+    pool.getConnection(function (err, connection) {
+      connection.query(
+        "SELECT contract FROM collectionlist ",
+        function (err, rows) {
+          if (err) {
+            console.log(err);
+          }
+          for (var i = 0; i < rows.length; i++) {
+            var contract = web3.eth
+              .contract(collectionabi)
+              .at(rows[i].contract);
+            var total = contract.totalSupply.call().toNumber();
+            //var author=contract.author.call();
+            for (var id = 1; id <= total; id++) {
+              var owner = contract.ownerOf.call(id);
+              var isonsell = vendorcontract.isOnSell
+                .call(rows[i].contract, id)
+                .toString();
+              if (owner != user && isonsell == "true") {
+                var uri = contract.tokenURI(id);
+                var metadata = contract.Metadata.call(id);
+                var name = metadata[1];
+                var description = metadata[2];
+                var price = metadata[3];
+                works.push([
+                  uri,
+                  name,
+                  rows[i].vendorname,
+                  rows[i].contract,
+                  description,
+                  price,
+                ]);
+              }
             }
           }
+          res.render("explore/explore", {
+            email: req.session.email,
+            bal: bal,
+            role: req.session.role,
+            works: works,
+          });
         }
-        res.render("explore/explore", {
-          email: req.session.email,
-          bal: bal,
-          role: req.session.role,
-          works: works,
-        });
-      }
-    );
-    connection.release();
-  });
+      );
+      connection.release();
+    });
+  }
 });
 module.exports = router;

@@ -111,21 +111,14 @@
                     <input type="hidden" id="ipfsuri" name="ipfsuri" readonly>
                     <div class="col-1"></div>
                     <div class="col-5">
-                      // using dropdown?
-                      //<select class="form-select" aria-label="Default select example">
-                        <option selected>選擇商品集</option>
-                        <option value="1">Collection 1</option>
-                        <option value="2">Collection 2</option>
-                        <option value="3">Collection 3</option>
-                      //</select><br>
                       <br>
                       <input class="textfield" type="text" id="name" name="name" placeholder="商品集名稱*"><br>
                       <input class="textfield" type="text" id="symbol" name="symbol" placeholder="商品集代號*"><br>
                       //- <input class="textfield" type="text" id="symbol" name="symbol" placeholder="作品代號*"><br>
-                      <input class="textfield" type="text" id="description" name="description" placeholder="作品描述"><br>
+                      <input class="textfield" type="text" id="description" name="description" placeholder="描述"><br>
                       <span>#{warn}</span>
                       <br>
-                      <input class="btn-submit" type="submit" id="upload" value="上傳NFT">
+                      <input class="btn-submit" type="submit" id="upload" value="創建商品集">
                       <br>
                     </div>
                   </form>
@@ -133,27 +126,6 @@
               </div>
             </div>
           </div>
-
-          if (goods)
-            each val in goods
-              <div class="col-4 explore-card">
-                <div>
-                  <a href="collection_detail"><img src=#{val.uri} width="285" height="285"></a>
-                </div>
-                <p for="" id="" class="description">#{val.collection}</p>
-              </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  // body
-  <div class="container-card">
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col">
-        <div class="row">
           if (collections)
             each val in collections
               <div class="col-4 explore-card">
@@ -161,24 +133,26 @@
                   <img src=#{val.uri} width="285" height="285" data-toggle="modal" data-target="#uploadModalCenter">
                   <p class="badge badge-pill creator">#{val.vendorname}<p>
                 </div>
-                <p for="" id="" class="description">#{val.description}</p>
+                //- <p for="" id="" class="description">#{val.description}</p>
                 <div class="row">
                   <a href="/collection_detail/#{val.name}/#{val.contract}"><div class="col-auto mr-auto" for="" id="" class="title-sm">#{val.name}</div></a>
                 </div>
               </div>
+          
         </div>
       </div>
     </div>
   </div>
 
+  // upload work modal
   <div class="modal fade bd-example-modal-xl" id="uploadModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body-work">
           <form class="row" action="" method="post">
             <div id="container-upload" class="col-6 text-center">
-              //<img src="" id="preview" width="300"height="300">
-              <input type="file" id="imageupload" name="image" style="display:none;" onchange=previewFile()><br>
+              //- <img src="" id="work-preview" width="300"height="300">
+              <input type="file" id="work-imageupload" name="image" style="display:none;" onchange=previewFile()><br>
               <i class="bi bi-upload" style="font-size: 5rem;"></i>
               // todo: 有preview的時候上傳圖片不能位移
               <label for="imageupload">上傳圖片</label>
@@ -189,7 +163,15 @@
             <div class="col-5">
 
               <br>
-              <input class="textfiled" type="text" id="ipfsuri" name="ipfsuri">
+              // dropdown need to get value
+              <select class="form-select" aria-label="Default select example">
+                <option selected>選擇商品集</option>
+                <option value="1">Meta</option>
+                <option value="2">Collection 2</option>
+                <option value="3">Collection 3</option>
+              </select><br>
+              <br>
+              <input class="textfiled" type="text" id="ipfsuri" name="ipfsuri" placeholder="uri">
               <input class="textfield" type="text" id="work_name" name="name" placeholder="作品名稱*"><br>
               <span>#{warn}</span>
               <input class="textfield" type="text" id="work_description" for="price" name="name" placeholder="描述"><br>

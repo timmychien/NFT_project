@@ -146,6 +146,7 @@ h6 {
 a {
   font-weight: 300;
   color: #666666;
+  text-decoration: none;
 }
 a:hover {
   color: black;
