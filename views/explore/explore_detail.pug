@@ -12,21 +12,35 @@
   
   // navigator
   include ../navigator.pug
-  <h5 class="text-center my-5">NFT詳情</h5>
+
   <div class="container">
     <div class="row">
+      <i class="fa fa-chevron-left" style="margin: 3rem 0rem 0rem 1rem;" onclick="history.back()"></i>
       <div class="col">
+        <h5 class="text-center my-5">NFT詳情</h5>
+      </div>
+    </div>
+    <div class="row my-5">
+      <div class="col ml-auto my-auto">
         <img src=#{uri} class="img-fluid">
       </div>
       <div class="col">
         <form action="" method="post">
           <span class="badge badge-pill creator">持有者 #{owner}</span>
           <span class="badge badge-pill creator">創作者 #{creator}</span>
-          <div>#{name}</div>
-          <div>#{description}</div>
-          <div>2 points</div>
-          <input type="submit" value="購買">
-          <p>#{warn}</p>
+          <div class="row">
+            <div class="my-3 name">#{name}</div>
+          </div>
+          <div class="row">
+            <div class="my-5 description">#{description}</div>
+          </div>
+          <div class="row">
+            <div class="price">#{price} points</div>
+          </div>
+          <div class="row">
+            <input type="submit" value="購買" class="submit-btn my-3">
+            <p>#{warn}</p>
+          </div>  
           <input type="hidden" name="address" value=#{contractaddress}>
           <input type="hidden" name="id" value=#{tokenid}>
         </form>

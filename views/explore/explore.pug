@@ -46,80 +46,46 @@
 
             <div id="collapseFilter" class="collapse show" aria-labelledby="heading" data-parent="#accordionFilter">
               <div class="card-body">
-                // search box
-                <div class="input-group align-items-center mb-3">
-                  <i class="fas fa-search"></i>
-                  <input type="search" id="form1" class="form-control" placeholder="搜尋作品或Collection名稱"/>
-                </div>
+                //- // search box
+                //- <div class="input-group align-items-center mb-3">
+                //-   <i class="fas fa-search"></i>
+                //-   <input type="search" id="form1" class="form-control" placeholder="搜尋作品或Collection名稱"/>
+                //- </div>
                 // radio
                 <div class="container-radio overflow-auto">
-                <form>
-                  each collection in collections 
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                      <label class="form-check-label" for="flexRadioDefault1">#{collection[0]}(#{collection[1]})</label>
-                    </div>
-                  <input type="submit" value="篩選">
-                </form>
-
-                  //<div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">Monster(13)</label>
-                  //</div>
-                  //<div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">CryptoPenguins(20)</label>
-                  //</div>
-                  //<div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">PandaMultiverse(15)</label>
-                  //</div>
-                  //<div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">LuckyCat(15)</label>
-                  //</div>
-                  //<div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">Monster(13)</label>
-                  //</div>
-                  //<div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">CryptoPenguins(20)</label>
-                  //</div>
-                  //<div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">PandaMultiverse(15)</label>
-                  //</div>
-                  //<div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">LuckyCat(15)</label>
-                  //</div>
+                  <form>
+                    each collection in collections 
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">#{collection[0]}(#{collection[1]})</label>
+                      </div>
+                    <input type="submit" value="篩選" class="my-3 submit-btn">
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-
-        <div id="accordionPrice">
-          // price filter
-          <div class="card">
-            <div class="card-header row" id="heading" data-toggle="collapse" data-target="#collapsePrice" aria-expanded="true" aria-controls="collapse">
-              <div class="col-auto mr-auto">價格</div>
-              <div class="col-auto pr-0">〉</div>
-          </div>
-            <div id="collapsePrice" class="collapse show" aria-labelledby="heading" data-parent="#accordionPrice">
-                // mix and max price
-                <div class="card-body">
-                  <div class="input-group align-items-center">
-                    <input type="text" id="min-price" class="form-control" placeholder="最小值"/>
-                    <div class="mx-3">至</div>
-                    <input type="text" id="max-price" class="form-control" placeholder="最大值"/>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
+        //- <div id="accordionPrice">
+        //-   // price filter
+        //-   <div class="card">
+        //-     <div class="card-header row" id="heading" data-toggle="collapse" data-target="#collapsePrice" aria-expanded="true" aria-controls="collapse">
+        //-       <div class="col-auto mr-auto">價格</div>
+        //-       <div class="col-auto pr-0">〉</div>
+        //-   </div>
+        //-     <div id="collapsePrice" class="collapse show" aria-labelledby="heading" data-parent="#accordionPrice">
+        //-         // mix and max price
+        //-         <div class="card-body">
+        //-           <div class="input-group align-items-center">
+        //-             <input type="text" id="min-price" class="form-control" placeholder="最小值"/>
+        //-             <div class="mx-3">至</div>
+        //-             <input type="text" id="max-price" class="form-control" placeholder="最大值"/>
+        //-           </div>
+        //-         </div>
+        //-     </div>
+        //-   </div>
+        //- </div>
       </div>
       <div class="col">
         <div class="row">
