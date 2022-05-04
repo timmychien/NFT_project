@@ -143,7 +143,7 @@ input[type="text"] {
     color: #696969;
     width: 285px;
     height: 285px;
-    top: -10px;
+    top: -47px;
     background-color: transparent;
     border: none;
 }
@@ -238,4 +238,27 @@ a:hover {
 
 .explore-card {
     margin-bottom: 2rem;
+}
+
+.explore-card:hover::before{
+    pointer-events: none;
+    position: absolute;
+    width: 285px;
+    height: 285px;
+    color: grey-dark;
+    background: #F3F2F2;
+    opacity: 0.8;
+    padding: 7rem 0rem;
+    text-align: center;
+    content: '\002B \a上架商品';
+    white-space: pre;
+    font-size: 20px;
+    font-weight: 350;
+    }
+
+#tutorial{
+    border:1px solid #ccc!important;
+    padding: 1rem 1rem;
+    border-radius: 16px;
+    letter-spacing: 1px;
 }
