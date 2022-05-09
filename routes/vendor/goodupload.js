@@ -26,10 +26,6 @@ router.get('/', function (req, res) {
     if (!req.session.email) {
         res.redirect('/login');
     }
-    if (req.session.isverified == 0) {
-        console.log('need verify')
-        res.redirect('/emailverify');
-    }
     else {
         var vendor = req.session.walletaddress;
         var bal = pointcontract.balanceOf(req.session.walletaddress).toNumber();
@@ -108,13 +104,18 @@ router.post("/", function (req, res) {
     }, 15000)
 
 });
-module.exports = router;
 router.post("/:title/:contractaddress", function (req, res) {
+    var pool = req.connection;
     var tokenaddress = req.params.contractaddress;
+    console.log(tokenaddress)
+    var collectionabi = require('../collectionABI');
+    var collectionabi = collectionabi.collectionABI;
+    var collectioncontract = web3.eth.contract(collectionabi).at(tokenaddress);
     var ipfsuri = req.body['work_ipfsuri'];
     var name = req.body['work_name'];
     var description = req.body['work_description'];
     var price = req.body['work_price'];
+    /*
     console.log(ipfsuri);
     var vendor = req.session.walletaddress;
     var address = req.session.walletaddress;
@@ -138,19 +139,22 @@ router.post("/:title/:contractaddress", function (req, res) {
     var serializedTx = tx.serialize();
     var hash = web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'));
     console.log(hash)
-    //res.redirect('/');
-    res.render('vendor/list_redirect');
+    setTimeout(function () {
+        var tokenId = collectioncontract.balanceOf.call(vendor).toNumber();
+        console.log(tokenId);
+        pool.getConnection(function (err, connection) {
+            connection.query("INSERT INTO goods_onsell(contract,tokenid,name,tokenURI,price)VALUES(?,?,?,?,?)", [tokenaddress,tokenId,name,ipfsuri,price],function(err,rows){
+                if(err){
+                    console.log(err)
+                }else{
+                    res.render('vendor/list_redirect');
+                }
+                
+            })
+            connection.release();
+        })
+    },10000)*/
+    res.redirect('/goodupload')
+
 });
-/*
-var collections = [
-    {
-        uri: "https://dummyimage.com/350x350/8b9091/fff",
-        title: "Black collection",
-        description: "yummy",
-    },
-    {
-        uri: "https://dummyimage.com/350x350/8b9091/fff",
-        title: "Blue collection",
-        description: "ocean",
-    },
-];*/
+module.exports = router;
