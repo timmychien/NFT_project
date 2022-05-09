@@ -106,7 +106,9 @@ router.post("/", function (req, res) {
 });
 router.post("/:title/:contractaddress", function (req, res) {
     var pool = req.connection;
+    var title=req.params.title;
     var tokenaddress = req.params.contractaddress;
+    console.log(title)
     console.log(tokenaddress)
     var collectionabi = require('../collectionABI');
     var collectionabi = collectionabi.collectionABI;
