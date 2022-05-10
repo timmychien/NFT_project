@@ -72,12 +72,11 @@ router.get("/:contractaddress/:tokenid", function (req, res) {
 });
 
 router.post('/:contractaddress/:tokenid', function (req, res) {
-    //var tokenaddress = req.params.contractaddress;
-    //var tokenid = req.params.tokenid;
+    var tokenaddress = req.params.contractaddress;
+    var tokenid = req.params.tokenid;
+    var pool=req.connection;
     var tokenaddress = req.body['address'];
     var tokenid = req.body['id'];
-    console.log(tokenaddress)
-    console.log(tokenid)
     var contract = web3.eth.contract(collectionabi).at(tokenaddress);
     var owner=contract.ownerOf(tokenid);
     if(owner==req.session.walletaddress){
@@ -107,7 +106,17 @@ router.post('/:contractaddress/:tokenid', function (req, res) {
     var serializedTx = tx.serialize();
     var hash = web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'));
     console.log(hash)
-    res.render('explore/buy_redirect');
+    pool.getConnection(function(err,connection){
+        connection.query('DELETE FROM goods_onsell WHERE contract=? AND tokenid=?',[tokenaddress,tokenid],function(err,rows){
+            if(err){
+                console.log(err)
+            }else{
+                res.render('explore/buy_redirect');
+            }
+        })
+        connection.release();
+    })
+    
 })
 
 module.exports = router;

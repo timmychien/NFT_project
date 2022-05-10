@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<title>個人錢包</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/personal/transfertoken.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+  // navbar
+  include ../navigator.pug
+
+  // body
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-3">
+        <label for='title'>發送代幣</label>
+      </div>
+
+      <div class="col-md-6">
+        <form action="" method="post">
+          //- // address
+          //- <input class="textfield" type="text" id="address" name="address" placeholder="錢包地址" value="#{walletaddress}" disabled><br/>
+          <input class="textfield" type="text" id="toEmail" name="toEmail" placeholder="欲發送對象(Email)">
+          <span>#{emailWarn}</span>
+          //- <div class="row">
+          //-   <div class="col-4">
+          //-     <input class="textfield" type="text" id="points" name="points" placeholder="點數餘額" value="1000" disabled>
+          //-   </div>
+          //-   <div class="col-1"></div>
+          //-   <div class="col-4">
+          //-     <input class="textfield" type="text" id="eth" name="eth" placeholder="ETH餘額" value="" disabled>
+          //-   </div>
+          //- </div>
+          // transfer point
+          <div class="row mt-5 align-items-center">
+            <div class="col-4">
+              <input class="textfield" type="text" id="toAmount" name="toAmount" placeholder="欲轉移平台點數" value="" oninput="value=value.replace(/[^\d]/g,'')">
+            </div>
+            <span>#{warn}</span>
+            <div class="col-3">
+              <input class="btnAuthen" type="submit" id="confirm" value="確認" >
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  // footer
+  include ../footbar.pug
+
+  <script src="/javascripts/personal/transfertoken.js"></script>
+</body>
+</html>

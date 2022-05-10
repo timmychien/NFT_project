@@ -12,7 +12,7 @@ web3.setProvider(
 var abi = require("../pointABI");
 var abi = abi.pointABI;
 var pointAddress = "0x1e8B628Da1EBcE9B1adA7CD181cda91614762414";
-var contract = web3.eth.contract(abi).at(pointAddress);
+var pointcontract = web3.eth.contract(abi).at(pointAddress);
 const customCommon = Common.forCustomChain(
     "mainnet",
     {
@@ -27,16 +27,17 @@ router.get("/", function (req, res) {
     if (!req.session.email) {
         res.redirect("/login");
     }
-    if (req.session.isverified == 0) {
-        console.log("need verify");
-        res.redirect("/emailverify");
+    else{
+        var bal = pointcontract.balanceOf(req.session.walletaddress).toNumber();
+        res.render("personal/exchangetoken", {
+            title: "兌換代幣",
+            walletaddress: req.session.walletaddress,
+            email: req.session.email,
+            role: req.session.role,
+            bal:bal
+        });
     }
-    res.render("personal/exchangetoken", {
-        title: "兌換代幣",
-        walletaddress: req.session.walletaddress,
-        email: req.session.email,
-        role: req.session.role,
-    });
+    
 });
 router.post("/", function (req, res) {
     var toaddress = req.session.walletaddress;
@@ -49,7 +50,7 @@ router.post("/", function (req, res) {
         var address = process.env.PLATFORM_ADDR;
         var privkey = Buffer.from(process.env.PRIV_KEY, "hex");
         var count = web3.eth.getTransactionCount(address);
-        var data = contract.operatorMint.getData(toaddress, tochange, "0x", "0x", {
+        var data = pointcontract.operatorMint.getData(toaddress, tochange, "0x", "0x", {
             from: address,
         });
         var gasPrice = 0;

@@ -52,6 +52,8 @@ var mycollectionRouter=require('./routes/personal/mycollection');
 var myregistrationRouter=require('./routes/personal/myregistration');
 var workuploadRouter=require('./routes/personal/workupload');
 var exchangetokenRouter=require('./routes/personal/exchangetoken');
+var transfertokenRouter=require('./routes/personal/transfertoken');
+var mywalletRouter=require('./routes/personal/mywallet');
 var modifyInfoRouter=require('./routes/modify/modifyinfo');
 var applyforvendorRouter=require('./routes/apply/applyforvendor');
 //vendor
@@ -59,6 +61,7 @@ var addCollectionRouter=require('./routes/vendor/addCollection');
 var workListingRouter=require('./routes/vendor/workListing');
 var vendorCollectionRouter=require('./routes/vendor/vendorCollection');
 var gooduploadRouter = require("./routes/vendor/goodupload");
+var uploadworkRouter=require('./routes/vendor/uploadwork');
 var collectionDetailRouter = require("./routes/vendor/collection_detail");
 var app = express();
 require('dotenv').config();
@@ -172,14 +175,18 @@ app.use('/mywork',myworkRouter);
 app.use('/mycollection',mycollectionRouter);
 app.use('/workupload',workuploadRouter);
 app.use('/exchangetoken',exchangetokenRouter);
+app.use('/transfertoken',transfertokenRouter);
+app.use('/mywallet',mywalletRouter);
 app.use('/myregistration',myregistrationRouter);
 app.use('/modifyinfo',modifyInfoRouter);
 app.use('/applyforvendor',applyforvendorRouter);
+
 //vendor
 app.use('/addCollection',addCollectionRouter);
 app.use('/workListing',workListingRouter);
 app.use('/vendorCollection',vendorCollectionRouter);
 app.use("/goodupload", gooduploadRouter);
+app.use("/uploadwork",uploadworkRouter);
 app.use("/collection_detail", collectionDetailRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

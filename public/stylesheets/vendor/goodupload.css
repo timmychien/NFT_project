@@ -137,13 +137,13 @@ input[type="text"] {
 }
 
 #upload-btn {
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
     font-weight: 100;
     color: #696969;
     width: 285px;
     height: 285px;
-    top: -47px;
+    top: -3rem;
     background-color: transparent;
     border: none;
 }
@@ -152,7 +152,13 @@ input[type="text"] {
     background-color: #fafafa;
     border: none;
 }
-
+#upload-btn:hover::after {
+    position: absolute;
+    transform: translate(-3.6rem, 3rem);
+    font-size: 20px;
+    font-weight: 350;
+    content: '創建商品集';
+}
 #upload-btn:focus {
     outline: none;
 }
@@ -162,7 +168,7 @@ input[type="text"] {
 }
 
 .modal-body-work {
-    padding: 4rem 4rem 1rem 4rem;
+    padding: 2rem 4rem 4rem 4rem;
 }
 
 .modal-body-work {
@@ -254,6 +260,7 @@ a:hover {
     white-space: pre;
     font-size: 20px;
     font-weight: 350;
+    z-index: 1;
 }
 
 #tutorial {
@@ -261,4 +268,8 @@ a:hover {
     padding: 1rem 1rem;
     border-radius: 16px;
     letter-spacing: 1px;
+}
+
+#workpreview {
+    z-index: 1;
 }

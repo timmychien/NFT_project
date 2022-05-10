@@ -21,17 +21,16 @@
         <br>
         <div class="container">
             <img src=#{work[0]} width="400"height="240">
-            <label for="address">作品地址:</label>
-            <dd>#{work[1]}</dd>
-            <label for="id">作品ID:</label>
+            <label for="name">作品名稱:</label>
             <dd>#{work[2]}</dd>
             <label for="newPrice">欲出售價格</label>
             <form action="" method="post">
               <input class="textfield" type="text" id="newPrice" name="newPrice">
               <p>#{warn}</p>
                 <input type="hidden" name="nftaddress" value=#{work[1]}>
-                <input type="hidden" name="tokenId" value=#{work[2]}>
-                <input type="submit" value=點我販售>
+                <input type="hidden" name="tokenname" value=#{work[2]}>
+                <input type="hidden" name="tokenId" value=#{work[3]}>
+                <input type="submit" value=點我上架>
             </form>
         </div>
   </div>

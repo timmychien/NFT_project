@@ -7,23 +7,19 @@ $(".upload").click(function () {
 $("#workpreview").hide();
 $("#preview").hide();
 function previewFile() {
-  var preview = document.querySelector("img");
-  var file = document.querySelector("input[type=file]").files[0];
-  var reader = new FileReader();
-  reader.addEventListener(
-    "load",
-    function () {
-      preview.src = reader.result;
-    },
-    false
-  );
-  if (file) {
-    reader.readAsDataURL(file);
-    $('label[for="imageupload"]').hide();
-    $("#icon").hide();
-    $("#notice").hide();
-    $("#preview").show();
-  }
+    var preview = document.querySelector('#preview');
+    var file = document.querySelector('#imageupload').files[0];
+    var reader = new FileReader();
+    reader.addEventListener("load", function () {
+        preview.src = reader.result;
+    }, false);
+    if (file) {
+        reader.readAsDataURL(file);
+        $('label[for="imageupload"]').hide();
+        $('#icon').hide();
+        $('#notice').hide();
+        $('#preview').show();
+    }
 }
 function previewwork() {
   var preview = document.querySelector("#workpreview");

@@ -26,54 +26,59 @@ router.get('/', function (req, res) {
     if (!req.session.email) {
         res.redirect('/login')
     }
-    var bal = pointcontract.balanceOf.call(req.session.walletaddress).toNumber();
-    var pool=req.connection;
-    var owner=req.session.walletaddress;
-    //console.log(owner)
-    var works = new Array();
-    pool.getConnection(function(err,connection){
-        connection.query('SELECT * FROM collectionlist',function(err,rows){
-            if(err){
-                console.log(err)
-            }else{
-                for (var i = 0; i < rows.length; i++) {
-                    if (contracts.includes(rows[i].contract) == false) {
-                        contracts.push(rows[i].contract);
-                    }
-                }
-                console.log(contracts)
-                for (var idx = 0; idx < contracts.length; idx++) {
-                    var contract = web3.eth.contract(abi).at(contracts[idx]);
-                    var idlist = contract.tokenIdofOwnerByAddress.call(owner);
-                    var ids = new Array();
-                    for (var j = 0; j < idlist.length; j++) {
-                        if(vendorcontract.isOnSell.call(contracts[idx],idlist[j])==false){
-                            ids.push(idlist[j].toNumber());
+    else{
+        var bal = pointcontract.balanceOf.call(req.session.walletaddress).toNumber();
+        var pool = req.connection;
+        var owner = req.session.walletaddress;
+        //console.log(owner)
+        var works = new Array();
+        pool.getConnection(function (err, connection) {
+            connection.query('SELECT * FROM collectionlist', function (err, rows) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    for (var i = 0; i < rows.length; i++) {
+                        if (contracts.includes(rows[i].contract) == false) {
+                            contracts.push(rows[i].contract);
                         }
-                        
                     }
-                    for (var id = 0; id < ids.length; id++) {
-                        var uri = contract.tokenURI.call(ids[id]);
-                        works.push([uri, contracts[idx], ids[id]]);
+                    //console.log(contracts)
+                    for (var idx = 0; idx < contracts.length; idx++) {
+                        var contract = web3.eth.contract(abi).at(contracts[idx]);
+                        var idlist = contract.tokenIdofOwnerByAddress.call(owner);
+                        var ids = new Array();
+                        for (var j = 0; j < idlist.length; j++) {
+                            if (vendorcontract.isOnSell.call(contracts[idx], idlist[j]) == false) {
+                                ids.push(idlist[j].toNumber());
+                            }
+                        }
+
+
+                        for (var id = 0; id < ids.length; id++) {
+                            var uri = contract.tokenURI.call(ids[id]);
+                            var metadata = contract.MetaData.call(ids[id]);
+                            var name = metadata[1];
+                            works.push([uri, contracts[idx], name, ids[id]]);
+                        }
                     }
+                    res.render('resell/resell', {
+                        title: '我的藝術品',
+                        email: req.session.email,
+                        role: req.session.role,
+                        bal: bal,
+                        walletaddress: req.session.walletaddress,
+                        works: works
+                    });
                 }
-                res.render('resell/resell', {
-                    title: '我的藝術品',
-                    email: req.session.email,
-                    role: req.session.role,
-                    bal:bal,
-                    walletaddress: req.session.walletaddress,
-                    works: works
-                });
-            }
+            })
+            connection.release();
         })
-        connection.release();
-    })
-    
+    }
 });
 router.post('/',function(req,res){
     var nftaddress=req.body['nftaddress'];
     var tokenId=req.body['tokenId'];
+    var name=req.body['tokenName'];
     var newPrice = parseInt(req.body['newPrice']);
     console.log(newPrice)
     if(typeof(newPrice)!='number'){
@@ -108,7 +113,7 @@ router.post('/',function(req,res){
     },5000)
    
 })
-router.get('/:address/:id/:price',function(req,res){
+router.get('/:address/:id/:/name:price',function(req,res){
     var bal = pointcontract.balanceOf.call(req.session.walletaddress).toNumber();
     res.render('resell/resell_redirect',{
         email: req.session.email,
@@ -116,11 +121,17 @@ router.get('/:address/:id/:price',function(req,res){
         bal: bal,
     })
 })
-router.post('/:address/:id/:price',function(req,res){
+router.post('/:address/:id/:name/:price',function(req,res){
+    var pool=req.connection;
     var nftaddress=req.params.address;
     var tokenId=req.params.id;
+    var name=req.params.name;
+    var price = req.params.price;
+    var collectionabi=require('../collectionABI');
+    var collectionabi=collectionabi.collectionABI;
+    var collectioncontract = web3.eth.contract(collectionabi).at(nftaddress);
+    var uri = collectioncontract.tokenURI.call(tokenId);
     //var newPrice=req.body['newPrice'];
-    var price=req.params.price;
     var address = req.session.walletaddress;
     var privkey = Buffer.from(req.session.pk, 'hex');
     var data = vendorcontract.relist.getData(nftaddress,tokenId,address,price);
@@ -142,6 +153,16 @@ router.post('/:address/:id/:price',function(req,res){
     var serializedTx = tx.serialize();
     var hash = web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'));
     console.log(hash)
-    res.redirect('/')
+    pool.getConnection(function(err,connection){
+        connection.query("INSERT INTO goods_onsell(contract,tokenid,name,tokenURI,price)VALUES(?,?,?,?,?)",[nftaddress,tokenId,name,uri,price],function(err,rows){
+            if(err){
+                console.log(err)
+            }else{
+                res.redirect('/');
+            }
+        })
+        connection.release();
+    })
+    
 })
 module.exports = router;

@@ -3,7 +3,13 @@ var router = express.Router();
 
 /* GET home page. */
 router.get("/", function (req, res) {
-    res.render("login", { title: "登入" });
+    if(req.session.email){
+        req.session.destroy();
+        res.redirect('/');
+    }else{
+        res.render("login", { title: "登入" });
+    }
+    
 });
 router.post("/", function (req, res, next) {
     var email = req.body["email"];

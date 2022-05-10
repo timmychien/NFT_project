@@ -28,54 +28,89 @@ const customCommon = Common.forCustomChain(
     },
     "petersburg"
 );
+function paginatedResults(data) {
+    return (req, res, next) => {
+        const page = 1; //parseInt(req.query.page);
+        const limit = 9; // amount of elements each page
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
+        const results = {};
+        if (endIndex < data.length) {
+            results.next = {
+                page: page + 1,
+                limit: limit,
+            };
+        }
+        if (startIndex > 0) {
+            results.previous = {
+                page: page - 1,
+                limit: limit,
+            };
+        }
+        results.results = data.find().limit(limit).skip(startIndex).exec();
+        next();
+    };
+}
 router.get("/", function (req, res) {
     if (!req.session.email) {
         res.redirect("/login");
     } else {
         var bal = pointcontract.balanceOf.call(req.session.walletaddress).toNumber();
         var pool = req.connection;
-        var works = new Array();
+        //var works = new Array();
         var collections=new Array();
-        //var collections=new Array();
-        //var user = req.session.walletaddress;
         pool.getConnection(function (err, connection) {
             connection.query(
-                "SELECT * FROM collectionlist ",
+                "SELECT * FROM collectionlist",
                 function (err, rows) {
                     if (err) {
                         console.log(err);
                     }
                     for (var i = 0; i < rows.length; i++) {
-                        var contract = web3.eth.contract(collectionabi).at(rows[i].contract);
                         var collectionName=rows[i].name;
                         //console.log(collectionName)
                         var onsellAmount=vendorcontract.onSellAmount.call(rows[i].contract);
-                        var total = contract.totalSupply.call().toNumber();
-                        //var author=contract.author.call();
-                        for (var id = 1; id <= total; id++) {
-                            //var owner = contract.ownerOf.call(id);
-                            var isonsell = vendorcontract.isOnSell.call(rows[i].contract, id).toString();
-                            if (isonsell == "true") {
-                                var uri = contract.tokenURI(id);
-                                var metadata = contract.MetaData.call(id);
-                                var name = metadata[1];
-                                var description = metadata[2];
-                                var price = metadata[3];
-                                works.push([uri,name,rows[i].vendorname,rows[i].contract,description,price,id]);
-                            }
-                        }
-                        if (onsellAmount>0){
+                        if (onsellAmount > 0) {
                             collections.push([collectionName, onsellAmount]);
                         }
-                        
                     }
-                    res.render("explore/explore", {
-                        email: req.session.email,
-                        bal: bal,
-                        role: req.session.role,
-                        collections: collections,
-                        works: works,
-                    });
+                    connection.query('SELECT * FROM goods_onsell', function (err, rows2) {
+                        var works = rows2;
+                        //pagination
+                        const numOfResults = works.length;
+                        const resultsPerPage = 9;
+                        const numOfPages = Math.ceil(numOfResults / resultsPerPage);
+                        let page = req.query.page ? parseInt(req.query.page) : 1;
+                        const startIndex = (page - 1) * resultsPerPage;
+                        const endIndex = page * resultsPerPage;
+
+                        if (endIndex > works.length - 1) {
+                            worksPerPage = works.slice(startIndex);
+                        } else {
+                            worksPerPage = works.slice(startIndex, endIndex);
+                        }
+                        let pagination = {
+                            numOfPages: Array(numOfPages),
+                            page: page,
+                        };
+
+                        if (endIndex < works.length) {
+                            pagination.next = "?page=" + (page + 1).toString();
+                        }
+
+                        if (startIndex > 0) {
+                            pagination.previous = "?page=" + (page - 1).toString();
+                        }
+                        res.render("explore/explore", {
+                            email: req.session.email,
+                            bal: bal,
+                            role: req.session.role,
+                            collections: collections,
+                            //works: works,
+                            works: worksPerPage,
+                            pagination: pagination,
+                        });
+                    })
                 }
             );
             connection.release();
@@ -86,40 +121,50 @@ router.post("/",function(req,res){
     var collectionname = req.body['flexRadioDefault'];
     var bal = pointcontract.balanceOf.call(req.session.walletaddress).toNumber();
     var pool = req.connection;
-    var works = new Array();
-    var collections = new Array();
-    //var collections=new Array();
+    var addresslist=new Array();
+    var collections=new Array();
     //var user = req.session.walletaddress;
     pool.getConnection(function (err, connection) {
-        connection.query(
-            "SELECT * FROM collectionlist WHERE name IN (?)",([collectionname]),
-            function (err, rows) {
-                if (err) {
-                    console.log(err);
+        connection.query("SELECT * FROM collectionlist WHERE name IN (?)",[collectionname],function (err, rows) {
+            if (err) {
+                console.log(err);
+            }
+            for (var i = 0; i < rows.length; i++) {
+                var collectionName = rows[i].name;
+                var onsellAmount = vendorcontract.onSellAmount.call(rows[i].contract);
+                if (onsellAmount > 0) {
+                    collections.push([collectionName, onsellAmount]);
+                    addresslist.push(rows[i].contract);
                 }
-                for (var i = 0; i < rows.length; i++) {
-                    var contract = web3.eth.contract(collectionabi).at(rows[i].contract);
-                    var collectionName = rows[i].name;
-                    //console.log(collectionName)
-                    var onsellAmount = vendorcontract.onSellAmount.call(rows[i].contract);
-                    var total = contract.totalSupply.call().toNumber();
-                    //var author=contract.author.call();
-                    for (var id = 1; id <= total; id++) {
-                        //var owner = contract.ownerOf.call(id);
-                        var isonsell = vendorcontract.isOnSell.call(rows[i].contract, id).toString();
-                        if (isonsell == "true") {
-                            var uri = contract.tokenURI(id);
-                            var metadata = contract.MetaData.call(id);
-                            var name = metadata[1];
-                            var description = metadata[2];
-                            var price = metadata[3];
-                            works.push([uri, name, rows[i].vendorname, rows[i].contract, description, price, id]);
-                        }
-                    }
-                    if (onsellAmount > 0) {
-                        collections.push([collectionName, onsellAmount]);
-                    }
+            }
+            connection.query("SELECT * FROM goods_onsell WHERE contract IN (?)",[addresslist],function(err,rows2){
+                if(err){
+                    console.log(err)
+                }
+                var works=rows2;
+                const numOfResults = works.length;
+                const resultsPerPage = 9;
+                const numOfPages = Math.ceil(numOfResults / resultsPerPage);
+                let page = req.query.page ? parseInt(req.query.page) : 1;
+                const startIndex = (page - 1) * resultsPerPage;
+                const endIndex = page * resultsPerPage;
 
+                if (endIndex > works.length - 1) {
+                    worksPerPage = works.slice(startIndex);
+                } else {
+                    worksPerPage = works.slice(startIndex, endIndex);
+                }
+                let pagination = {
+                    numOfPages: Array(numOfPages),
+                    page: page,
+                };
+
+                if (endIndex < works.length) {
+                    pagination.next = "?page=" + (page + 1).toString();
+                }
+
+                if (startIndex > 0) {
+                    pagination.previous = "?page=" + (page - 1).toString();
                 }
                 res.render("explore/explore", {
                     email: req.session.email,
@@ -127,7 +172,9 @@ router.post("/",function(req,res){
                     role: req.session.role,
                     collections: collections,
                     works: works,
+                    pagination: pagination,
                 });
+            })
             }
         );
         connection.release();
