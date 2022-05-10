@@ -45,11 +45,11 @@ input[type="text"] {
   border-bottom: none;
 }
 
-.description {
+#description {
   font-weight: 300;
   font-size: 14px;
   letter-spacing: 1px;
-  margin-bottom: -0.5px;
+  margin-bottom: 1rem;
   color: #696969;
 }
 
