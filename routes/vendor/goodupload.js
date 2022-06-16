@@ -60,6 +60,11 @@ router.post("/", function (req, res) {
     var symbol = req.body['symbol'];
     var description=req.body['description'];
     var uri=req.body['ipfsuri'];
+    if(uri==''){
+        res.render('vendor/error_notice', {
+            warn: '尚未上傳圖片或圖片上傳未成功'
+        })
+    }
     console.log(uri)
     pool.getConnection(function (err, connection) {
         connection.query('SELECT * FROM collectionlist WHERE name=?',[name],function(err,rows){
@@ -129,6 +134,11 @@ router.post("/workupload", function (req, res) {
     var pool = req.connection;
     var collection = req.body["work_belong_collection"];
     var ipfsuri = req.body['work_ipfsuri'];
+    if(ipfsuri==''){
+        res.render('vendor/error_notice',{
+            warn:'尚未上傳圖片或圖片上傳未成功'
+        })
+    }
     var name = req.body['work_name'];
     var description = req.body['work_description'];
     var price = req.body['work_price'];
