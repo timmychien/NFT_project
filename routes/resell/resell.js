@@ -128,7 +128,7 @@ router.post('/',function(req,res){
         "to": nftaddress,
         "value": 0x0,
         "data": data,
-        "chainId": 13144
+        "chainId": 13330
     }
     var tx = new Tx(rawTx, { common: customCommon });
     tx.sign(privkey);
@@ -180,7 +180,7 @@ router.post('/:address/:id/:name/:price',function(req,res){
         "to": vendorAddress,
         "value": 0x0,
         "data": data,
-        "chainId": 13144
+        "chainId": 13330
     }
     var tx = new Tx(rawTx, { common: customCommon });
     tx.sign(privkey);

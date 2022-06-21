@@ -140,7 +140,7 @@ router.post('/:contractaddress/:tokenid/:price/confirm', function (req, res) {
         "to": vendorAddress,
         "value": 0x0,
         "data": data,
-        "chainId": 13144
+        "chainId": 13330
     }
     var tx = new Tx(rawTx, { common: customCommon });
     tx.sign(privkey);
