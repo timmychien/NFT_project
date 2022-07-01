@@ -65,63 +65,73 @@ router.post("/", function (req, res) {
             warn: '尚未上傳圖片或圖片上傳未成功'
         })
     }
-    console.log(uri)
-    pool.getConnection(function (err, connection) {
-        connection.query('SELECT * FROM collectionlist WHERE name=?',[name],function(err,rows){
-            if(err){
-                console.log(err)
-            }else{
-                if(rows.length>0){
-                    res.render('vendor/goodupload_error');
-                }else{
-                    var address = req.session.walletaddress;
-                    var vendor = req.session.walletaddress;
-                    var vendorname = req.session.name;
-                    var privkey = Buffer.from(req.session.pk, 'hex');
-                    var data = contract.createNFT.getData(name, symbol, vendor);
-                    var count = web3.eth.getTransactionCount(address);
-                    var gasPrice = 0;
-                    var gasLimit = 3000000;
-                    var rawTx = {
-                        "from": address,
-                        "nonce": web3.toHex(count),
-                        "gasPrice": web3.toHex(gasPrice),
-                        "gasLimit": web3.toHex(gasLimit),
-                        "to": vendorAddress,
-                        "value": 0x0,
-                        "data": data,
-                        "chainId": 13330
-                    }
-                    var tx = new Tx(rawTx, { common: customCommon });
-                    tx.sign(privkey);
-                    var serializedTx = tx.serialize();
-                    var hash = web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'));
-                    console.log(hash)
-                    //var nftaddress = contract.getaddress.call(vendor, name);
-                    //console.log(nftaddress)
-                    setTimeout(function () {
-                        var nftaddress = contract.getaddress.call(vendor, name);
-                        console.log(nftaddress)
-                        connection.query('INSERT INTO collectionlist(name,symbol,vendor,contract,description,uri,vendorname)VALUES(?,?,?,?,?,?,?)', [name, symbol, vendor, nftaddress, description, uri, vendorname], function (err, rows) {
-                            if (err) {
-                                res.render('error', {
-                                    message: err.message,
-                                    error: err
-                                })
-                            } else {
-                                res.render('vendor/add_redirect');
-                            }
-                        })
-                        connection.release()
-                    }, 15000)
-                }
-            }
+    else if(name==''){
+        res.render('vendor/error_notice', {
+            warn: '尚未輸入商品集名稱'
         })
-        connection.release();
-    })
+    }
+    else if (symbol == '') {
+        res.render('vendor/error_notice', {
+            warn: '尚未輸入商品集代號'
+        })
+    }
+    else{
+        console.log(uri)
+        pool.getConnection(function (err, connection) {
+            connection.query('SELECT * FROM collectionlist WHERE name=?', [name], function (err, rows) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    if (rows.length > 0) {
+                        res.render('vendor/goodupload_error');
+                    } else {
+                        var address = req.session.walletaddress;
+                        var vendor = req.session.walletaddress;
+                        var vendorname = req.session.name;
+                        var privkey = Buffer.from(req.session.pk, 'hex');
+                        var data = contract.createNFT.getData(name, symbol, vendor);
+                        var count = web3.eth.getTransactionCount(address);
+                        var gasPrice = 0;
+                        var gasLimit = 3000000;
+                        var rawTx = {
+                            "from": address,
+                            "nonce": web3.toHex(count),
+                            "gasPrice": web3.toHex(gasPrice),
+                            "gasLimit": web3.toHex(gasLimit),
+                            "to": vendorAddress,
+                            "value": 0x0,
+                            "data": data,
+                            "chainId": 13330
+                        }
+                        var tx = new Tx(rawTx, { common: customCommon });
+                        tx.sign(privkey);
+                        var serializedTx = tx.serialize();
+                        var hash = web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'));
+                        console.log(hash)
+                        //var nftaddress = contract.getaddress.call(vendor, name);
+                        //console.log(nftaddress)
+                        setTimeout(function () {
+                            var nftaddress = contract.getaddress.call(vendor, name);
+                            console.log(nftaddress)
+                            connection.query('INSERT INTO collectionlist(name,symbol,vendor,contract,description,uri,vendorname)VALUES(?,?,?,?,?,?,?)', [name, symbol, vendor, nftaddress, description, uri, vendorname], function (err, rows) {
+                                if (err) {
+                                    res.render('error', {
+                                        message: err.message,
+                                        error: err
+                                    })
+                                } else {
+                                    res.render('vendor/add_redirect');
+                                }
+                            })
+                            connection.release()
+                        }, 15000)
+                    }
+                }
+            })
+            connection.release();
+        })
     //var nftaddress=req.body['addr'];
-   
-
+    }
 });
 router.post("/workupload", function (req, res) {
     var time = new Date();
@@ -134,17 +144,28 @@ router.post("/workupload", function (req, res) {
     var pool = req.connection;
     var collection = req.body["work_belong_collection"];
     var ipfsuri = req.body['work_ipfsuri'];
-    if(ipfsuri==''){
-        res.render('vendor/error_notice',{
-            warn:'尚未上傳圖片或圖片上傳未成功'
-        })
-    }
     var name = req.body['work_name'];
     var description = req.body['work_description'];
     var price = req.body['work_price'];
     var vendor = req.session.walletaddress;
     var address = req.session.walletaddress;
     var privkey = Buffer.from(req.session.pk, "hex");
+    if(ipfsuri==''){
+        res.render('vendor/error_notice',{
+            warn:'尚未上傳圖片或圖片上傳未成功'
+        })
+    }
+    else if (name == '') {
+        res.render('vendor/error_notice', {
+            warn: '尚未輸入商品集名稱'
+        })
+    }
+    else if (price == '') {
+        res.render('vendor/error_notice', {
+            warn: '尚未輸入價格'
+        })
+    }
+    else {
     console.log(ipfsuri);
     pool.getConnection(function(err,connection){
         connection.query('SELECT contract FROM collectionlist WHERE name=?',[collection],function(err,rows){
@@ -197,7 +218,7 @@ router.post("/workupload", function (req, res) {
         })
         connection.release();
     })
-   
+    }
     
 });
 module.exports = router;
