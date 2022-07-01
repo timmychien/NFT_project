@@ -175,7 +175,7 @@ router.post('/:contractaddress/:tokenid/:price/confirm', function (req, res) {
         })
         connection.release();
     })
-    res.render('explore/buy_redirect');
+    //res.render('explore/buy_redirect');
     
 })
 
