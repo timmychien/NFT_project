@@ -57,6 +57,7 @@ router.get("/:contractaddress/:tokenid", function (req, res) {
                                 title: "nft_detail",
                                 bal: bal,
                                 email: req.session.email,
+                                upgrade: req.session.upgrade,
                                 name: name,
                                 description: description,
                                 price: price,

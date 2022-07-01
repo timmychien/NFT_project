@@ -10,6 +10,7 @@ router.get('/', function (req, res) {
                 list: list,
                 email: req.session.email,
                 role: req.session.role,
+                upgrade: req.session.upgrade,
             })
         })
         connection.release();

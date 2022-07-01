@@ -23,6 +23,7 @@ router.get('/', function (req, res) {
                     res.render('personal/transactionRecord', {
                         email: req.session.email,
                         role: req.session.role,
+                        upgrade: req.session.upgrade,
                         bal: bal,
                         transactions: transactions
                     })

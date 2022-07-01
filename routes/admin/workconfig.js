@@ -18,7 +18,8 @@ router.get('/',function(req,res){
                     data:data,
                     title: '作品管理',
                     email: req.session.email,
-                    role: req.session.role
+                    role: req.session.role,
+                    upgrade: req.session.upgrade,
                 })
             }
         })

@@ -51,6 +51,7 @@ router.post('/',function(req,res){
             res.render('personal/transfertoken', {
                 email: req.session.email,
                 role: req.session.role,
+                upgrade: req.session.upgrade,
                 bal: nowBalance,
                 emailWarn: '您無法發送點數給自己'
             })

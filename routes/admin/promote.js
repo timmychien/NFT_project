@@ -21,6 +21,7 @@ router.get('/', function (req, res) {
                     names: names,
                     email: req.session.email,
                     role: req.session.role,
+                    upgrade: req.session.upgrade,
                     walletaddress: req.session.walletaddress
                 });
             }

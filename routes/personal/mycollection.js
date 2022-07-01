@@ -18,6 +18,7 @@ router.get("/", function (req, res) {
             title: "我的收藏品",
             email: req.session.email,
             role: req.session.role,
+            upgrade: req.session.upgrade,
             mycollections: mycollections,
         });
     }

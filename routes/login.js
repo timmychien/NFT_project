@@ -47,6 +47,7 @@ router.post("/", function (req, res, next) {
                                 req.session.isverified = rows[0].isverified;
                                 req.session.cellphone = rows[0].cellphone;
                                 req.session.pk = rows[0].privkey;
+                                req.session.upgrade=rows[0].upgradeApply;
                                 if (req.session.isverified == 0) {
                                     console.log("need verify");
                                     res.redirect("/emailverify");

@@ -34,6 +34,7 @@ router.get("/", function (req, res) {
             walletaddress: req.session.walletaddress,
             email: req.session.email,
             role: req.session.role,
+            upgrade: req.session.upgrade,
             bal:bal
         });
     }

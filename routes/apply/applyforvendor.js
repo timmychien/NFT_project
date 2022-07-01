@@ -13,6 +13,7 @@ router.get('/',function(req,res){
             title: '申請成為商家',
             email: req.session.email,
             role: req.session.role,
+            upgrade: req.session.upgrade,
             walletaddress: req.session.walletaddress
         })
     }

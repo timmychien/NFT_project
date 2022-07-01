@@ -27,6 +27,7 @@ router.get('/', function (req, res) {
             cellphone: req.session.cellphone,
             privkey: req.session.pk,
             role: req.session.role,
+            upgrade: req.session.upgrade,
             bal:bal
         });
     }

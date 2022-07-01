@@ -113,7 +113,7 @@ router.post('/:contractaddress/:tokenid/:price/confirm', function (req, res) {
     var bal = pointcontract.balanceOf.call(req.session.walletaddress).toNumber();
     var tokenaddress = req.params.contractaddress;
     var tokenid = req.params.tokenid;
-    var price=req.body['price'];
+    var price=req.params.price;
     var pool = req.connection;
     var time = new Date();
     time = time.getUTCFullYear() + '-' +

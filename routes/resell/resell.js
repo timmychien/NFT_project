@@ -92,6 +92,7 @@ router.get('/', function (req, res) {
                         role: req.session.role,
                         bal: bal,
                         walletaddress: req.session.walletaddress,
+                        upgrade: req.session.upgrade,
                         works: works,
                         pagination: pagination,
                     });
@@ -145,6 +146,7 @@ router.get('/:address/:id/:name/:price',function(req,res){
     res.render('resell/resell_redirect',{
         email: req.session.email,
         role: req.session.role,
+        upgrade: req.session.upgrade,
         bal: bal,
     })
 })
@@ -237,6 +239,8 @@ router.get('/work_detail/:contractaddress/:tokenid',function(req,res){
                         res.render("resell/work_detail", {
                             title: "nft_detail",
                             bal: bal,
+                            upgrade: req.session.upgrade,
+                            role:req.session.role,
                             email: req.session.email,
                             name: name,
                             description: description,

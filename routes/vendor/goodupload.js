@@ -42,6 +42,7 @@ router.get('/', function (req, res) {
                         title: '我的商品集',
                         email: req.session.email,
                         role: req.session.role,
+                        upgrade: req.session.upgrade,
                         bal:bal,
                         collections: collections
                     })

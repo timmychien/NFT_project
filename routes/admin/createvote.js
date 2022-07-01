@@ -24,7 +24,8 @@ router.get('/', function (req, res) {
         res.render('admin/createvote', {
             title: 'Express',
             email: req.session.email,
-            role: req.session.role
+            role: req.session.role,
+            upgrade: req.session.upgrade,
         });
     }
     

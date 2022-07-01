@@ -54,6 +54,8 @@ router.get("/:title/:contractaddress", function (req, res) {
                 res.render("vendor/collection_detail", {
                     //title: "商品集詳情",
                     email: req.session.email,
+                    role:req.session.role,
+                    upgrade: req.session.upgrade,
                     collection_info: collection_info,
                     //uri: collectionuri,
                     title: title,

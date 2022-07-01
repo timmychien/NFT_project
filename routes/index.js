@@ -41,6 +41,7 @@ router.get("/", function (req, res) {
                  new_arrival: new_arrival,
                  activity_detail: activity_detail,
                  role: req.session.role,
+                 upgrade:req.session.upgrade,
                  walletaddress: req.session.walletaddress
                });
              });

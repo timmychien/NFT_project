@@ -17,6 +17,7 @@ router.get('/', function (req, res) {
         res.render('personal/mywallet', {
             email: req.session.email,
             role: req.session.role,
+            upgrade: req.session.upgrade,
             bal: bal
         });
     }
